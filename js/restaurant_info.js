@@ -1,6 +1,8 @@
 let restaurant;
 var map;
 
+var key = config.googleMapApi;
+
 /**
  * Initialize Google map, called from HTML.
  */
@@ -161,3 +163,30 @@ getParameterByName = (name, url) => {
     return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+
+/**
+ * jQuery for Google API
+ * reference: https://gist.github.com/derzorngottes/3b57edc1f996dddcab25
+ */
+
+function addApiKey() {
+
+  if (key == '') {
+    var apiKey = '';
+  } else {
+    var apiKey = 'key=' + config.googleMapApi + '&';
+  }
+
+  console.log('key: ' + key);
+  console.log('apiKey: ' + apiKey);
+  
+  var pathStart = 'https://maps.googleapis.com/maps/api/js?';
+  var pathEnd = 'libraries=places&callback=initMap';
+  
+  document.getElementById('googleApi').setAttribute('src', pathStart + apiKey + pathEnd);
+}
+
+$( document ).ready(function() {
+  console.log( "ready!" );
+  addApiKey();
+});
