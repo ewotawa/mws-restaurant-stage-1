@@ -4,6 +4,8 @@ let restaurants,
 var map
 var markers = []
 
+var key = config.googleMapApi
+
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -176,3 +178,30 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 }
+
+/**
+ * jQuery for Google API
+ * reference: https://gist.github.com/derzorngottes/3b57edc1f996dddcab25
+ */
+
+function addApiKey() {
+
+  if (key == '') {
+    var apiKey = '';
+  } else {
+    var apiKey = 'key=' + config.googleMapApi + '&';
+  }
+
+  console.log('key: ' + key);
+  console.log('apiKey: ' + apiKey);
+  
+  var pathStart = 'https://maps.googleapis.com/maps/api/js?';
+  var pathEnd = 'libraries=places&callback=initMap';
+  
+  document.getElementById('googleApi').setAttribute('src', pathStart + apiKey + pathEnd);
+}
+
+$( document ).ready(function() {
+  console.log( "ready!" );
+  addApiKey();
+});
