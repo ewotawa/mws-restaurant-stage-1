@@ -2,25 +2,32 @@
 <html>
 
 <head>
+  <!-- set Viewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- stylesheet links -->
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <link rel="stylesheet" href="css/styles.css">
+  <!-- title -->
   <title>Restaurant Reviews</title>
+  <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  
 </head>
 
 <body>
   <header>
-    <nav>
+    <nav class="container">
       <h1><a href="/">Restaurant Reviews</a></h1>
+      <div class="nav-right" id="hamburger"><h1><i class="fas fa-bars"></i></h1></div>
     </nav>
   </header>
 
   <main id="maincontent">
-    <section id="map-container">
-      <div id="map"></div>
-    </section>
+    <!-- filters -->
     <section>
-      <div class="filter-options">
+      <div class="filter-options" id="drawer">
         <h2>Filter Results</h2>
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
@@ -29,6 +36,15 @@
           <option value="all">All Cuisines</option>
         </select>
       </div>
+    </section>
+    
+    <!-- map container -->
+    <section id="map-container">
+      <div id="map"></div>
+    </section>
+
+    <!-- restaurant cards -->
+    <section class="container center">
       <ul id="restaurants-list"></ul>
     </section>
   </main>

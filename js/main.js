@@ -6,6 +6,8 @@ var markers = []
 
 var key = config.googleMapApi
 
+var burger = document.getElementById("hamburger");
+
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -165,6 +167,8 @@ createRestaurantHTML = (restaurant) => {
   return li
 }
 
+
+
 /**
  * Add markers for current restaurants to the map.
  */
@@ -178,6 +182,15 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 }
+
+/**
+ * Toggle for hamburger icon
+ */
+
+burger.addEventListener("click", function(e) {
+    drawer.classList.toggle('open');
+    e.stopPropagation();
+});
 
 /**
  * jQuery for Google API
