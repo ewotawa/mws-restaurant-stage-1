@@ -10,3 +10,17 @@ var config = {
 }
 
 where XXX represents your own valid Google Maps API key. 
+
+
+REFERENCES:
+References specific to service worker research:
+(1) course content
+(2) https://developers.google.com/web/fundamentals/codelabs/debugging-service-workers/
+(3) placement of sw.js in file structure: https://stackoverflow.com/questions/34147562/service-worker-is-caching-files-but-fetch-event-is-never-fired
+(4) https://developers.google.com/web/fundamentals/primers/service-workers/
+
+
+References for JavaScript, CSS, HTML functionality:
+(1) course content
+(2) https://developer.mozilla.org/
+(3) http://www.w3schools.com

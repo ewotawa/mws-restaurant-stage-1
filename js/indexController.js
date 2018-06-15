@@ -6,3 +6,4 @@ if(navigator.serviceWorker) {
         console.log('service worker NOT registered. error: ', err);
     });
 }
+
