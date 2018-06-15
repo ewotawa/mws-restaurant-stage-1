@@ -102,9 +102,6 @@ updateRestaurants = () => {
   const cOption = cSelect.getElementsByTagName('option');
   const nOption = nSelect.getElementsByTagName('option');
 
-  console.log(cOption);
-  console.log(nOption);
-  
   const cIndex = cSelect.selectedIndex;
   const nIndex = nSelect.selectedIndex;
 
@@ -239,8 +236,8 @@ function addApiKey() {
     var apiKey = 'key=' + config.googleMapApi + '&';
   }
 
-  console.log('key: ' + key);
-  console.log('apiKey: ' + apiKey);
+  //console.log('key: ' + key);
+  //console.log('apiKey: ' + apiKey);
   
   var pathStart = 'https://maps.googleapis.com/maps/api/js?';
   var pathEnd = 'libraries=places&callback=initMap';
