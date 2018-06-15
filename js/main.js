@@ -35,13 +35,16 @@ fetchNeighborhoods = () => {
  */
 fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
   const select = document.getElementById('neighborhoods-select');
+  select.setAttribute('name', 'Select Neighborhood');
   neighborhoods.forEach(neighborhood => {
     const option = document.createElement('option');
     option.innerHTML = neighborhood;
     option.value = neighborhood;
+    option.setAttribute('id', neighborhood);
     select.append(option);
   });
 }
+
 
 /**
  * Fetch all cuisines and set their HTML.
@@ -68,6 +71,7 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
     option.innerHTML = cuisine;
     option.value = cuisine;
     select.append(option);
+    option.setAttribute('id', cuisine);
   });
 }
 
@@ -94,6 +98,13 @@ updateRestaurants = () => {
   const cSelect = document.getElementById('cuisines-select');
   const nSelect = document.getElementById('neighborhoods-select');
 
+  /* figure out way to clear out former selected element attribute */
+  const cOption = cSelect.getElementsByTagName('option');
+  const nOption = nSelect.getElementsByTagName('option');
+
+  console.log(cOption);
+  console.log(nOption);
+  
   const cIndex = cSelect.selectedIndex;
   const nIndex = nSelect.selectedIndex;
 
@@ -108,6 +119,25 @@ updateRestaurants = () => {
       fillRestaurantsHTML();
     }
   })
+
+  /* set selected attribute */
+
+  for (i = 0; i < cOption.length; i++) {
+    if (cOption[i].getAttribute('value') == cuisine) {
+      cOption[i].setAttribute('selected', '');
+    } else {
+      cOption[i].removeAttribute('selected');
+    }
+  }
+
+  for (i = 0; i < nOption.length; i++) {
+    if (nOption[i].getAttribute('value') == neighborhood) {
+      nOption[i].setAttribute('selected', '');
+    } else {
+      nOption[i].removeAttribute('selected');
+    }
+  }
+  
 }
 
 /**
@@ -145,6 +175,7 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.setAttribute('alt', 'promotional photo for ' + restaurant.name);
   li.append(image);
 
   const name = document.createElement('h1');
@@ -162,7 +193,9 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
-  li.append(more)
+  more.setAttribute('name', 'View details for ' + restaurant.name);
+  more.setAttribute('role', 'button');
+  li.append(more);
 
   return li
 }
@@ -191,6 +224,7 @@ burger.addEventListener("click", function(e) {
     drawer.classList.toggle('open');
     e.stopPropagation();
 });
+
 
 /**
  * jQuery for Google API

@@ -23,7 +23,9 @@ a {
 }
 a:hover, a:focus {
 	color: #3397db;
-	text-decoration: none;
+  text-decoration: none;
+  /* add focus */
+  box-shadow: 0 0 8px 3px;
 }
 a img{
 	border: none 0px #fff;
@@ -34,6 +36,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 	display: block;
+}
+select:hover, select:focus {
+  text-decoration: none;
+  /* add focus */
+  box-shadow: 0 0 8px 3px;
 }
 #maincontent {
   background-color: #f3f3f3;
@@ -400,7 +407,7 @@ nav h1 a {
   }
 
   .inside #footer {
-    width: calc(100% - 80px);
+    width: calc(100% - 50px);
   }
 
   #reviews-list {
@@ -408,6 +415,6 @@ nav h1 a {
   }
 
   #footer {
-    width: calc(100% - 80px);
+    width: calc(100% - 50px);
   }
 }
