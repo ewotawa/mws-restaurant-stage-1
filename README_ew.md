@@ -24,3 +24,6 @@ References for JavaScript, CSS, HTML functionality:
 (1) course content
 (2) https://developer.mozilla.org/
 (3) http://www.w3schools.com
+
+Note: the machine I am using to test the site does not have sufficient resources to run a Lighthouse accessibility audit. Alternatively, there may be a bug in how Chromium performs this audit relative to the Chrome browser. (I am using Linux.) Instead, I used the following accessibility auditor available through Firefox:
+https://addons.mozilla.org/en-US/firefox/addon/tota11y-accessibility-toolkit/?src=search

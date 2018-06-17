@@ -46,16 +46,34 @@ self.addEventListener('activate', function(event) {
     console.log('service worker activating');
 });
 
+// add elements to the cache when the page's hash changes
+/* 
+self.addEventListener('hashchange', function(event) {
+    console.log('window hash has changed. Add new assets to the cache.');
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(function(cache) {
+                console.log('Opened cache');
+                return cache.add(event.request);
+            })
+    );
+}, false);
+*/
+
 //handle fetch events
 self.addEventListener('fetch', function(event) {
+    // add console logging for event requests
+    console.log(event.request);
+
+    //serve static content from cache
     event.respondWith(
         caches.match(event.request)
             .then(function(response) {
                 //Cache hit - return response
                 if (response) {
                     return response;
-                }
-                return fetch(event.request);
+                }                
+                return fetch(event.request);                
             }
         )
     );
