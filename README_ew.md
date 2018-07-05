@@ -27,3 +27,9 @@ References for JavaScript, CSS, HTML functionality:
 
 Note: the machine I am using to test the site does not have sufficient resources to run a Lighthouse accessibility audit. Alternatively, there may be a bug in how Chromium performs this audit relative to the Chrome browser. (I am using Linux.) Instead, I used the following accessibility auditor available through Firefox:
 https://addons.mozilla.org/en-US/firefox/addon/tota11y-accessibility-toolkit/?src=search
+
+References for fetch requests:
+(1) course content 
+(2) http://developer.mozilla.org/
+    (a) Using Fetch
+(3) http://www.w3schools.com

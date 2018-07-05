@@ -3,48 +3,59 @@ var map;
 
 var key = config.googleMapApi;
 
+function fetchRestaurantsAll (data) {
+  return data;
+}
+
+function fetchUniqueRestaurant (data) {
+  const restaurants = data.restaurants;
+  let results = restaurants;
+  const id = getParameterByName('id');
+  if (id) {
+    results = results.filter(r => r.id == id);
+    restaurant = results[0];
+    return restaurant;
+  } 
+}
+
 /**
  * Initialize Google map, called from HTML.
+ * deprecated fetchRestaurantFromURL (XHR dependent) in favor of fetch API
  */
+
 window.initMap = () => {
-  fetchRestaurantFromURL((error, restaurant) => {
-    if (error) { // Got an error!
-      console.error(error);
-    } else {
-      self.map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 16,
-        center: restaurant.latlng,
-        scrollwheel: false
-      });
-      fillBreadcrumb();
-      DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
-    }
-  });
+  fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
+    return response.json();
+  }).then(fetchRestaurantsAll)
+  .then(fetchUniqueRestaurant)
+  .then(fetchRestaurantMap)
+  .catch(error => console.error(error));  
+  
+  function fetchRestaurantMap (restaurant) {
+    self.map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 16,
+      center: restaurant.latlng,
+      scrollwheel: false
+    });
+    fillBreadcrumb();
+    DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
+  }
 }
 
 /**
  * Get current restaurant from page URL.
+ * deprecated fetchRestaurantFromURL() (XHR dependent) in favor of fetch API
  */
-fetchRestaurantFromURL = (callback) => {
-  if (self.restaurant) { // restaurant already fetched!
-    callback(null, self.restaurant)
-    return;
-  }
-  const id = getParameterByName('id');
-  if (!id) { // no id found in URL
-    error = 'No restaurant id in URL'
-    callback(error, null);
-  } else {
-    DBHelper.fetchRestaurantById(id, (error, restaurant) => {
-      self.restaurant = restaurant;
-      if (!restaurant) {
-        console.error(error);
-        return;
-      }
-      fillRestaurantHTML();
-      callback(null, restaurant)
-    });
-  }
+fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
+  return response.json();
+}).then(fetchRestaurantsAll)
+.then(fetchUniqueRestaurant)
+.then(fetchUniqueRestHTML)
+.catch(error => console.error(error));
+
+function fetchUniqueRestHTML (restaurant) {
+  self.restaurant = restaurant;
+  fillRestaurantHTML();
 }
 
 /**
@@ -185,8 +196,8 @@ function addApiKey() {
     var apiKey = 'key=' + config.googleMapApi + '&';
   }
 
-  console.log('key: ' + key);
-  console.log('apiKey: ' + apiKey);
+  //console.log('key: ' + key);
+  //console.log('apiKey: ' + apiKey);
   
   var pathStart = 'https://maps.googleapis.com/maps/api/js?';
   var pathEnd = 'libraries=places&callback=initMap';

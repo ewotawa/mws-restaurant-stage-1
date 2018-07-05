@@ -9,25 +9,69 @@ var key = config.googleMapApi
 var burger = document.getElementById("hamburger");
 
 /**
- * Fetch neighborhoods and cuisines as soon as the page is loaded.
+ * Consolidate fetch events 
  */
-document.addEventListener('DOMContentLoaded', (event) => {
-  fetchNeighborhoods();
-  fetchCuisines();
-});
+
+fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
+  return response.json();
+}).then(fetchRestaurantsAll)
+.then(fetchUniqueNeighborhoods)
+.then(uniqueNeighborhoodsHTML)
+.catch(error => console.error(error)); 
+
+fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
+  return response.json();
+}).then(fetchRestaurantsAll)
+.then(fetchUniqueCuisines)
+.then(uniqueCuisinesHTML)
+.catch(error => console.error(error));
+
+function fetchRestaurantsAll (data) {
+  return data;
+}
 
 /**
- * Fetch all neighborhoods and set their HTML.
+ * Fetch all neighborhoods and set their HTML
+ * deprecated fetchNeighborhoods() (XHR dependent) in favor of fetch API
  */
-fetchNeighborhoods = () => {
-  DBHelper.fetchNeighborhoods((error, neighborhoods) => {
-    if (error) { // Got an error
-      console.error(error);
-    } else {
-      self.neighborhoods = neighborhoods;
-      fillNeighborhoodsHTML();
+
+function fetchUniqueNeighborhoods (data) {
+  const restaurants = data.restaurants;
+  let neighborhoodArray = [];
+  for (let restaurant of restaurants) {
+    if (neighborhoodArray.indexOf(restaurant.neighborhood) == -1) {
+      neighborhoodArray.push(restaurant.neighborhood);
     }
-  });
+  }
+  return neighborhoodArray;
+}
+
+function uniqueNeighborhoodsHTML (neighborhoodArray) {
+  let neighborhoods = neighborhoodArray;
+  self.neighborhoods = neighborhoods;
+  fillNeighborhoodsHTML();
+}
+
+/**
+ * Fetch all cuisines and set their HTML
+ * deprecated fetchCuisines() (XHR dependent) in favor of fetch API
+ */
+
+function fetchUniqueCuisines (data) {
+  const restaurants = data.restaurants;
+  let cuisineArray = [];
+  for (let restaurant of restaurants) {
+    if (cuisineArray.indexOf(restaurant.cuisine_type) == -1) {
+      cuisineArray.push(restaurant.cuisine_type);
+    }
+  }
+  return cuisineArray;
+}
+
+function uniqueCuisinesHTML (cuisineArray) {
+  let cuisines = cuisineArray;
+  self.cuisines = cuisines;
+  fillCuisinesHTML();
 }
 
 /**
@@ -45,27 +89,11 @@ fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
   });
 }
 
-
-/**
- * Fetch all cuisines and set their HTML.
- */
-fetchCuisines = () => {
-  DBHelper.fetchCuisines((error, cuisines) => {
-    if (error) { // Got an error!
-      console.error(error);
-    } else {
-      self.cuisines = cuisines;
-      fillCuisinesHTML();
-    }
-  });
-}
-
 /**
  * Set cuisines HTML.
  */
 fillCuisinesHTML = (cuisines = self.cuisines) => {
   const select = document.getElementById('cuisines-select');
-
   cuisines.forEach(cuisine => {
     const option = document.createElement('option');
     option.innerHTML = cuisine;
@@ -98,7 +126,7 @@ updateRestaurants = () => {
   const cSelect = document.getElementById('cuisines-select');
   const nSelect = document.getElementById('neighborhoods-select');
 
-  /* figure out way to clear out former selected element attribute */
+  /* clear out former selected element attribute */
   const cOption = cSelect.getElementsByTagName('option');
   const nOption = nSelect.getElementsByTagName('option');
 
@@ -108,15 +136,33 @@ updateRestaurants = () => {
   const cuisine = cSelect[cIndex].value;
   const neighborhood = nSelect[nIndex].value;
 
-  DBHelper.fetchRestaurantByCuisineAndNeighborhood(cuisine, neighborhood, (error, restaurants) => {
-    if (error) { // Got an error!
-      console.error(error);
-    } else {
-      resetRestaurants(restaurants);
-      fillRestaurantsHTML();
-    }
-  })
+  /**
+   * fetch event for restaurants that match filters
+   */
 
+  fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
+    return response.json();
+  }).then(fetchRestaurantsAll)
+  .then(fetchMatchedRestaurants)
+  .catch(error => console.error(error));
+  
+  function fetchMatchedRestaurants (data) {
+    const restaurants = data.restaurants;
+    let results = restaurants;
+
+    if (cuisine != 'all') { // filter by cuisine
+      results = results.filter(r => r.cuisine_type == cuisine);
+    }
+
+    if (neighborhood != 'all') { // filter by neighborhood
+      results = results.filter(r => r.neighborhood == neighborhood);
+    }
+
+    resetRestaurants(results);
+    fillRestaurantsHTML();
+    return results;
+  }
+  
   /* set selected attribute */
 
   for (i = 0; i < cOption.length; i++) {
@@ -236,8 +282,8 @@ function addApiKey() {
     var apiKey = 'key=' + config.googleMapApi + '&';
   }
 
-  //console.log('key: ' + key);
-  //console.log('apiKey: ' + apiKey);
+  // console.log('key: ' + key);
+  // console.log('apiKey: ' + apiKey);
   
   var pathStart = 'https://maps.googleapis.com/maps/api/js?';
   var pathEnd = 'libraries=places&callback=initMap';
