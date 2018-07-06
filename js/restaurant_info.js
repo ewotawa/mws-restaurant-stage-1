@@ -8,7 +8,7 @@ function fetchRestaurantsAll (data) {
 }
 
 function fetchUniqueRestaurant (data) {
-  const restaurants = data.restaurants;
+  const restaurants = data;
   let results = restaurants;
   const id = getParameterByName('id');
   if (id) {

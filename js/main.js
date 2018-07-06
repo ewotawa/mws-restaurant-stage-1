@@ -36,7 +36,7 @@ function fetchRestaurantsAll (data) {
  */
 
 function fetchUniqueNeighborhoods (data) {
-  const restaurants = data.restaurants;
+  const restaurants = data;
   let neighborhoodArray = [];
   for (let restaurant of restaurants) {
     if (neighborhoodArray.indexOf(restaurant.neighborhood) == -1) {
@@ -58,7 +58,7 @@ function uniqueNeighborhoodsHTML (neighborhoodArray) {
  */
 
 function fetchUniqueCuisines (data) {
-  const restaurants = data.restaurants;
+  const restaurants = data;
   let cuisineArray = [];
   for (let restaurant of restaurants) {
     if (cuisineArray.indexOf(restaurant.cuisine_type) == -1) {
@@ -147,7 +147,7 @@ updateRestaurants = () => {
   .catch(error => console.error(error));
   
   function fetchMatchedRestaurants (data) {
-    const restaurants = data.restaurants;
+    const restaurants = data;
     let results = restaurants;
 
     if (cuisine != 'all') { // filter by cuisine
