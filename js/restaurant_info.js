@@ -24,12 +24,47 @@ function fetchUniqueRestaurant (data) {
  */
 
 window.initMap = () => {
-  fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
-    return response.json();
-  }).then(fetchRestaurantsAll)
-  .then(fetchUniqueRestaurant)
-  .then(fetchRestaurantMap)
-  .catch(error => console.error(error));  
+  
+  // implement IndexedDB where service worker is available. Else use fetch API.
+  if (navigator.serviceWorker) {
+    var dbPromise = idb.open('mwsStage2', 1, function(upgradeDb) {
+        // set up switch to manage version control
+        switch(upgradeDb.oldVersion) {
+            case 0:
+                // set up a key that's separate to the data
+                var mwsDataStore = upgradeDb.createObjectStore('mwsData', {keyPath: 'id'});
+        }
+    });  
+    
+    // PUT DATA INTO DATABASE: create a fetch event to pull the data from the server. see main.js
+  
+    // PULL DATA OUT OF DATABASE: get all Restaurants
+    function getRestaurant () {
+      dbPromise.then(function(db) {
+        var tx = db.transaction('mwsData', 'readonly');
+        var store = tx.objectStore('mwsData');
+        return store.getAll();
+      }).then(fetchUniqueRestaurant)
+      .then(fetchRestaurantMap)
+      .catch(error => console.error(error)); 
+    }
+    
+    // if there's a service worker, pull the data out of IndexedDB
+    getRestaurant();
+  
+  } else {
+  
+    // fetch events for browsers that do not have service workers
+    
+    // restaurants
+    fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
+      return response.json();
+    }).then(fetchRestaurantsAll)
+    .then(fetchUniqueRestaurant)
+    .then(fetchRestaurantMap)
+    .catch(error => console.error(error)); 
+  
+  }
   
   function fetchRestaurantMap (restaurant) {
     self.map = new google.maps.Map(document.getElementById('map'), {
@@ -42,16 +77,53 @@ window.initMap = () => {
   }
 }
 
+
+
 /**
  * Get current restaurant from page URL.
  * deprecated fetchRestaurantFromURL() (XHR dependent) in favor of fetch API
  */
-fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
-  return response.json();
-}).then(fetchRestaurantsAll)
-.then(fetchUniqueRestaurant)
-.then(fetchUniqueRestHTML)
-.catch(error => console.error(error));
+// implement IndexedDB where service worker is available. Else use fetch API.
+if (navigator.serviceWorker) {
+  var dbPromise = idb.open('mwsStage2', 1, function(upgradeDb) {
+      // set up switch to manage version control
+      switch(upgradeDb.oldVersion) {
+          case 0:
+              // set up a key that's separate to the data
+              var mwsDataStore = upgradeDb.createObjectStore('mwsData', {keyPath: 'id'});
+      }
+  });  
+  
+  // PUT DATA INTO DATABASE: create a fetch event to pull the data from the server. see main.js
+
+  // PULL DATA OUT OF DATABASE: get all Restaurants
+  function getRestaurant () {
+    dbPromise.then(function(db) {
+      var tx = db.transaction('mwsData', 'readonly');
+      var store = tx.objectStore('mwsData');
+      return store.getAll();
+    }).then(fetchUniqueRestaurant)
+    .then(fetchUniqueRestHTML)
+    .catch(error => console.error(error));
+  }
+  
+  // if there's a service worker, pull the data out of IndexedDB
+  getRestaurant();
+
+} else {
+
+  // fetch events for browsers that do not have service workers
+  
+  // restaurants
+  fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
+    return response.json();
+  }).then(fetchRestaurantsAll)
+  .then(fetchUniqueRestaurant)
+  .then(fetchUniqueRestHTML)
+  .catch(error => console.error(error));
+
+}
+
 
 function fetchUniqueRestHTML (restaurant) {
   self.restaurant = restaurant;

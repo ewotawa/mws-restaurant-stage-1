@@ -8,23 +8,110 @@ var key = config.googleMapApi
 
 var burger = document.getElementById("hamburger");
 
+
 /**
- * Consolidate fetch events 
+ * set up IDB database
+ * 
+ * parameters: database name, version, callback
+ * function will be called if browser hasn't heard about database before or if known version is less than parameter version.
+ * only place where can create or remove object stores and indices
+ * 
+ * note: see readme file for idb library:
+ * https://github.com/jakearchibald/idb/blob/master/README.md
+ * I included idb.js in the file structure to put idb in the global scope.
  */
 
-fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
-  return response.json();
-}).then(fetchRestaurantsAll)
-.then(fetchUniqueNeighborhoods)
-.then(uniqueNeighborhoodsHTML)
-.catch(error => console.error(error)); 
+// do not need to import the IDB library (promise-based) because it is in the global scope. See js/idb.js
+// import idb from 'idb';
 
-fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
-  return response.json();
-}).then(fetchRestaurantsAll)
-.then(fetchUniqueCuisines)
-.then(uniqueCuisinesHTML)
-.catch(error => console.error(error));
+
+// create the database and put objects into it.
+if (navigator.serviceWorker) {
+  var dbPromise = idb.open('mwsStage2', 1, function(upgradeDb) {
+      // set up switch to manage version control
+      switch(upgradeDb.oldVersion) {
+          case 0:
+              // set up a key that's separate to the data
+              var mwsDataStore = upgradeDb.createObjectStore('mwsData', {keyPath: 'id'});
+      }
+  });  
+  
+  // PUT DATA INTO DATABASE: create a fetch event to pull the data from the server
+  fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
+      return response.json();
+    }).then(fetchRestaurantsAll)
+    .then(storeData)
+    .catch(error => console.error(error));
+    
+    function fetchRestaurantsAll (data) {
+      return data;
+    }
+
+    function storeData (data) {
+      dbPromise.then(function(db) {
+          var restaurants = data;
+          var tx = db.transaction('mwsData', 'readwrite');
+          var store = tx.objectStore('mwsData');
+          restaurants.forEach(function(restaurant) {
+              store.put(restaurant);
+          });
+      });
+    }
+  
+  // PULL DATA OUT OF DATABASE: get all Neighborhoods
+  function getDataNeighborhoods () {
+    dbPromise.then(function(db) {
+      var tx = db.transaction('mwsData', 'readonly');
+      var store = tx.objectStore('mwsData');
+      return store.getAll();
+    }).then(fetchUniqueNeighborhoods)
+    .then(uniqueNeighborhoodsHTML)
+    .catch(error => console.error(error));
+  }
+
+  // PULL DATA OUT OF DATABASE: get all Restaurants
+  function getDataRestaurants () {
+    dbPromise.then(function(db) {
+      var tx = db.transaction('mwsData', 'readonly');
+      var store = tx.objectStore('mwsData');
+      return store.getAll();
+    }).then(fetchUniqueCuisines)
+    .then(uniqueCuisinesHTML)
+    .catch(error => console.error(error));
+  }
+  
+  // if there's a service worker, pull the data out of IndexedDB
+  getDataNeighborhoods();
+  getDataRestaurants();
+
+} else {
+
+  // fetch events for browsers that do not have service workers
+  
+  // neighborhoods
+  fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
+    return response.json();
+  }).then(fetchRestaurantsAll)
+  .then(fetchUniqueNeighborhoods)
+  .then(uniqueNeighborhoodsHTML)
+  .catch(error => console.error(error)); 
+  
+  // restaurants
+  fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
+    return response.json();
+  }).then(fetchRestaurantsAll)
+  .then(fetchUniqueCuisines)
+  .then(uniqueCuisinesHTML)
+  .catch(error => console.error(error));
+
+}
+
+
+
+
+/**
+ * main.html functions
+ */
 
 function fetchRestaurantsAll (data) {
   return data;
