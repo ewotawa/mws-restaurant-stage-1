@@ -6,6 +6,8 @@
  * https://gibhub.com/jakearchibald/idb/blob/master/README.md
  */
 
+ console.log('idb.js');
+
 'use strict';
 
 (function() {
