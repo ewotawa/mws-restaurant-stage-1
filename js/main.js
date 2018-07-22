@@ -37,27 +37,8 @@ if (navigator.serviceWorker) {
   });  
   
   // PUT DATA INTO DATABASE: create a fetch event to pull the data from the server
-  fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
-      return response.json();
-    }).then(fetchRestaurantsAll)
-    .then(storeData)
-    .catch(error => console.error(error));
-    
-    function fetchRestaurantsAll (data) {
-      return data;
-    }
+  // see idb-test_index.js
 
-    function storeData (data) {
-      dbPromise.then(function(db) {
-          var restaurants = data;
-          var tx = db.transaction('mwsData', 'readwrite');
-          var store = tx.objectStore('mwsData');
-          restaurants.forEach(function(restaurant) {
-              store.put(restaurant);
-          });
-      });
-    }
-  
   // PULL DATA OUT OF DATABASE: get all Neighborhoods
   function getDataNeighborhoods () {
     dbPromise.then(function(db) {
@@ -227,11 +208,48 @@ updateRestaurants = () => {
    * fetch event for restaurants that match filters
    */
 
-  fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
-    return response.json();
-  }).then(fetchRestaurantsAll)
-  .then(fetchMatchedRestaurants)
-  .catch(error => console.error(error));
+   // add service worker functionality
+    // create the database and put objects into it.
+    if (navigator.serviceWorker) {
+      var dbPromise = idb.open('mwsStage2', 1, function(upgradeDb) {
+          // set up switch to manage version control
+          switch(upgradeDb.oldVersion) {
+              case 0:
+                  // set up a key that's separate to the data
+                  var mwsDataStore = upgradeDb.createObjectStore('mwsData', {keyPath: 'id'});
+          }
+      });  
+      
+      // PUT DATA INTO DATABASE: create a fetch event to pull the data from the server
+      // see idb-test_index.js 
+
+      // PULL DATA OUT OF DATABASE: get all matched Restaurants
+      function getDataMatchedRestaurants () {
+        dbPromise.then(function(db) {
+          var tx = db.transaction('mwsData', 'readonly');
+          var store = tx.objectStore('mwsData');
+          return store.getAll();
+        }).then(fetchMatchedRestaurants)
+        .catch(error => console.error(error));
+      }
+      
+      // if there's a service worker, pull the data out of IndexedDB
+      getDataMatchedRestaurants();
+
+    } else {
+
+      // fetch events for browsers that do not have service workers
+      
+      // matched restaurants
+      fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
+        return response.json();
+      }).then(fetchRestaurantsAll)
+      .then(fetchMatchedRestaurants)
+      .catch(error => console.error(error));
+
+    }
+  
+
   
   function fetchMatchedRestaurants (data) {
     const restaurants = data;
