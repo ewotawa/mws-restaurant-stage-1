@@ -33,3 +33,14 @@ References for fetch requests:
 (2) http://developer.mozilla.org/
     (a) Using Fetch
 (3) http://www.w3schools.com
+
+REFERENCES: PART II
+
+Improve audit responses:
+
+(1) deprecate jQuery in favor of plain-vanilla Javascript:
+https://stackoverflow.com/questions/2304941/what-is-the-non-jquery-equivalent-of-document-ready
+
+(2) preload fontawesome stylesheet
+https://developers.google.com/web/updates/2016/03/link-rel-preload
+https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/

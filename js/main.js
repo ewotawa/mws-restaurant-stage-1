@@ -396,7 +396,17 @@ function addApiKey() {
   document.getElementById('googleApi').setAttribute('src', pathStart + apiKey + pathEnd);
 }
 
+/*
 $( document ).ready(function() {
   console.log( "ready!" );
+  addApiKey();
+});
+*/
+
+// to improve audit score, deprecate jQuery
+// method credit: https://stackoverflow.com/questions/2304941/what-is-the-non-jquery-equivalent-of-document-ready
+
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("ready!");
   addApiKey();
 });
