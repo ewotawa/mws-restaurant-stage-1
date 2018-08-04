@@ -62,3 +62,6 @@ https://developers.google.com/web/fundamentals/web-app-manifest/
 Photo by Patrick Tomasso on Unsplash
 Patrick Tomasso: https://unsplash.com/photos/GXXYkSwndP4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 Unsplash: https://unsplash.com/search/photos/restaurant?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+
+(6) meta tag for theme color
+https://developers.google.com/web/tools/lighthouse/audits/address-bar
