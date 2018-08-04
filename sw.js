@@ -21,12 +21,17 @@ var urlsToCache = [
     '/img/8.jpg',
     '/img/9.jpg',
     '/img/10.jpg',
+    '/js/config.js',
     '/js/dbhelper.js',
+    '/js/idb-test_index.js',
+    '/js/idb.js',
+    '/js/indexController.js',
     '/js/main.js',
     '/js/restaurant_info.js',
     '/index.html',
     '/restaurant.html',
-    'https://code.jquery.com/jquery-1.10.2.js',
+    '/manifest.json',
+    //'https://code.jquery.com/jquery-1.10.2.js',
     'https://use.fontawesome.com/releases/v5.0.13/css/all.css'
 ];
 
