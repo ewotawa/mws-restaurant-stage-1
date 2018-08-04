@@ -4,7 +4,8 @@ let restaurants,
 var map
 var markers = []
 
-var key = config.googleMapApi
+var key = config.googleMapApi;
+var fontAwesome = config.fontAwesome;
 
 var burger = document.getElementById("hamburger");
 
@@ -394,6 +395,7 @@ function addApiKey() {
   var pathEnd = 'libraries=places&callback=initMap';
   
   document.getElementById('googleApi').setAttribute('src', pathStart + apiKey + pathEnd);
+  document.getElementById('fontAwesome').setAttribute('src', fontAwesome);
 }
 
 /*

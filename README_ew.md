@@ -6,10 +6,15 @@ https://gist.github.com/derzorngottes/3b57edc1f996dddcab25
 To review this page after cloning from GitHub, you will need to create your own js/config.js file and to store the following code in that file:
 
 var config = {
-    googleMapApi: 'XXX'
+    googleMapApi: 'XXX',
+    fontAwesome: 'YYY'
 }
 
-where XXX represents your own valid Google Maps API key. 
+where XXX represents your own valid Google Maps API key
+and YYY represents your own valid Font Awesome CDN code. 
+
+You can create your own Font Awesome CDN code by providing an e-mail address at the following site:
+https://cdn.fontawesome.com/ 
 
 
 REFERENCES:
@@ -44,3 +49,16 @@ https://stackoverflow.com/questions/2304941/what-is-the-non-jquery-equivalent-of
 (2) preload fontawesome stylesheet
 https://developers.google.com/web/updates/2016/03/link-rel-preload
 https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/
+Note: deprecated in favor of subscribing to the JavaScript CDN. See notes on config.js file above.
+
+(3) preconnect to sites
+https://developers.google.com/web/fundamentals/performance/resource-prioritization#preconnect
+
+(4) Add a progressive Web App Manifest
+https://developers.google.com/web/tools/lighthouse/audits/install-prompt
+https://developers.google.com/web/fundamentals/web-app-manifest/
+
+(5) icon for pwa manifest
+Photo by Patrick Tomasso on Unsplash
+Patrick Tomasso: https://unsplash.com/photos/GXXYkSwndP4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+Unsplash: https://unsplash.com/search/photos/restaurant?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
