@@ -65,3 +65,8 @@ Unsplash: https://unsplash.com/search/photos/restaurant?utm_source=unsplash&utm_
 
 (6) meta tag for theme color
 https://developers.google.com/web/tools/lighthouse/audits/address-bar
+
+(7) add aria-labelled by detail
+https://dequeuniversity.com/rules/axe/2.2/label?application=lighthouse
+https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute
+https://www.w3.org/TR/WCAG20-TECHS/ARIA7.html

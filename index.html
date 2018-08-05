@@ -33,11 +33,11 @@
     <section>
       <div class="filter-options" id="drawer">
         <h2>Filter Results</h2>
-        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
-          <option value="all">All Neighborhoods</option>
+        <select id="neighborhoods-select" name="neighborhoods" aria-labelledby="nValue" onchange="updateRestaurants()">
+          <option id="nValue" value="all">All Neighborhoods</option>
         </select>
-        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
-          <option value="all">All Cuisines</option>
+        <select id="cuisines-select" name="cuisines" aria-labelledby="cValue" onchange="updateRestaurants()">
+          <option id="cValue" value="all">All Cuisines</option>
         </select>
       </div>
     </section>
