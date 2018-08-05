@@ -10,7 +10,7 @@ var CACHE_NAME = 'mws_cache_0';
 var urlsToCache = [
     '/',
     '/css/styles.css',
-    '/data/restaurants.json',
+    //'/data/restaurants.json',
     '/img/1.png',
     '/img/2.png',
     '/img/3.png',
@@ -28,6 +28,8 @@ var urlsToCache = [
     '/js/indexController.js',
     '/js/main.js',
     '/js/restaurant_info.js',
+    '/icons/patrick-tomasso-499112-unsplash_192x192.png',
+    '/icons/patrick-tomasso-499112-unsplash_512x512.png',
     '/index.html',
     '/restaurant.html',
     '/manifest.json',
