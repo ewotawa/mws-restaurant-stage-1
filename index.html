@@ -10,7 +10,7 @@
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <link rel="stylesheet" href="css/styles.css">
   <!-- font awesome CDN -->
-  <script id="fontAwesome"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <!-- preconnect links -->
   <link rel="preconnect" href="https://maps.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,8 @@
     
     <!-- map container -->
     <section id="map-container">
-      <div id="map" role="application"></div>
+      <div><img id="staticMap"></div>
+      <div class="hideMap"><div id="map" role="application"></div></div>
     </section>
 
     <!-- restaurant cards -->

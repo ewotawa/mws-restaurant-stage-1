@@ -19,7 +19,7 @@ ul, li {
 }
 a {
   /* changed color for accessibility */
-  color: #ffa64d;
+  color: #BC5A01;
 	text-decoration: none;
 }
 a:hover, a:focus {
@@ -56,6 +56,10 @@ select:hover, select:focus {
   padding: 25px;
   text-align: center;
   text-transform: uppercase;
+}
+
+#footer strong {
+  color: #FFA500; /* added to improve contrast*/
 }
 /* ====================== Navigation ====================== */
 nav {
@@ -172,7 +176,7 @@ nav h1 a {
 }
 #restaurants-list li h1 {
   /* changed color for accessibility */
-  color: #ffa64d;
+  color: #BC5A01;
   font-family: Arial,sans-serif;
   font-size: 14pt;
   font-weight: 200;
@@ -187,7 +191,7 @@ nav h1 a {
 }
 #restaurants-list li a {
   /* changed color for accessibility */
-  background-color: #ffa64d;
+  background-color: #BC5A01;
   border-bottom: 3px solid #eee;
   color: #fff;
   display: inline-block;
@@ -228,7 +232,7 @@ nav h1 a {
 }
 #restaurant-name {
   /* changed color for accessibility */
-  color: #ffa64d;
+  color: #BC5A01;
   font-family: Arial,sans-serif;
   font-size: 20pt;
   font-weight: 200;
@@ -267,7 +271,7 @@ nav h1 a {
   padding: 30px 40px 80px;
 }
 #reviews-container h2 {
-  color: #f58500;
+  color: #BC5A01;
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -1px;
@@ -320,7 +324,7 @@ nav h1 a {
   border-color: black;
 }
 .reviewRating {
-  background-color: #f58500;
+  background-color: #BC5A01;
   color: white;
   text-transform: uppercase;
   padding: 0.5em;
@@ -340,6 +344,9 @@ nav h1 a {
   margin-right: auto;
 }
 
+#hideMap {
+  height: 0px;
+}
 /* Media Queries */
 
 /* Small Screens */
@@ -424,3 +431,15 @@ nav h1 a {
     width: calc(100% - 50px);
   }
 }
+
+/* @media screen and (max-width: 640px) {
+  #map {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 641px) {
+  #staticMap {
+    display: none;
+  }
+}*/

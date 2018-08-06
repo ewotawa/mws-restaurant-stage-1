@@ -70,3 +70,13 @@ https://developers.google.com/web/tools/lighthouse/audits/address-bar
 https://dequeuniversity.com/rules/axe/2.2/label?application=lighthouse
 https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute
 https://www.w3.org/TR/WCAG20-TECHS/ARIA7.html
+
+(8) improve color contrast for accessibility
+https://dequeuniversity.com/rules/axe/2.2/color-contrast?application=lighthouse
+
+(9) static/dynamic map hybrid
+https://medium.com/@lorenzozaccagnini/improve-google-map-performance-in-your-pwa-fe24a6b3a37b
+https://developers.google.com/maps/documentation/maps-static/intro
+https://www.w3schools.com/cssref/sel_id.asp
+https://css-tricks.com/forums/topic/make-div-disappear-with-css-media-queries-on-screen-width/
+https://developer.mozilla.org/en-US/docs/Web/API/Screen/width
