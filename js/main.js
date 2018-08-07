@@ -206,7 +206,7 @@ sMap.onclick = function () {
   // hide static map
   sMap.removeAttribute('src');
   // show dynamic map
-  document.getElementById('hideMap').removeAttribute('class');
+  document.getElementById('mapOuter').removeAttribute('style');
 }
 
 initMap = () => {

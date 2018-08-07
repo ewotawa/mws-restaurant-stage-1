@@ -7,6 +7,12 @@ console.log('this is the service worker');
 var CACHE_NAME = 'mws_cache_0';
 
 // list urls to cache
+
+// url components for google map api
+var pathStart = 'https://maps.googleapis.com/maps/api/js?';
+var pathEnd = 'libraries=places&callback=initMap';
+var pathMid = config.googleMapApi;
+
 var urlsToCache = [
     '/',
     '/css/styles.css',
@@ -21,7 +27,7 @@ var urlsToCache = [
     '/img/8.png',
     '/img/9.png',
     '/img/10.png',
-    '/js/config.js',
+    '/config.js',
     '/js/dbhelper.js',
     '/js/idb-test_index.js',
     '/js/idb.js',
@@ -34,7 +40,8 @@ var urlsToCache = [
     '/restaurant.html',
     '/manifest.json',
     //'https://code.jquery.com/jquery-1.10.2.js',
-    'https://use.fontawesome.com/releases/v5.0.13/css/all.css'
+    'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
+    pathStart + pathMid + pathEnd //main page google map
 ];
 
 self.addEventListener('install', function(event) {
