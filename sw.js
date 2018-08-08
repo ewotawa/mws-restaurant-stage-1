@@ -9,24 +9,24 @@ var CACHE_NAME = 'mws_cache_0';
 // list urls to cache
 
 // url components for google map api
-var pathStart = 'https://maps.googleapis.com/maps/api/js?';
-var pathEnd = 'libraries=places&callback=initMap';
-var pathMid = config.googleMapApi;
+// var pathStart = 'https://maps.googleapis.com/maps/api/js?';
+// var pathEnd = 'libraries=places&callback=initMap';
+// var pathMid = config.googleMapApi;
 
 var urlsToCache = [
     '/',
     '/css/styles.css',
     //'/data/restaurants.json',
-    '/img/1.png',
-    '/img/2.png',
-    '/img/3.png',
-    '/img/4.png',
-    '/img/5.png',
-    '/img/6.png',
-    '/img/7.png',
-    '/img/8.png',
-    '/img/9.png',
-    '/img/10.png',
+    '/img/1.jp2',
+    '/img/2.jp2',
+    '/img/3.jp2',
+    '/img/4.jp2',
+    '/img/5.jp2',
+    '/img/6.jp2',
+    '/img/7.jp2',
+    '/img/8.jp2',
+    '/img/9.jp2',
+    '/img/10.jp2',
     '/config.js',
     '/js/dbhelper.js',
     '/js/idb-test_index.js',
@@ -41,7 +41,7 @@ var urlsToCache = [
     '/manifest.json',
     //'https://code.jquery.com/jquery-1.10.2.js',
     'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
-    pathStart + pathMid + pathEnd //main page google map
+    //pathStart + pathMid + pathEnd //main page google map
 ];
 
 self.addEventListener('install', function(event) {
@@ -77,7 +77,7 @@ self.addEventListener('hashchange', function(event) {
 //handle fetch events
 self.addEventListener('fetch', function(event) {
     // add console logging for event requests
-    console.log(event.request);
+    //console.log(event.request);
 
     //serve static content from cache
     event.respondWith(

@@ -36,9 +36,9 @@ class DBHelper {
    */
   static imageUrlForRestaurant(restaurant) {
     if (restaurant.photograph) {
-      return (`/img/${restaurant.photograph}.png`); // added .jpg extension to path; updated to .png 8/4/2018
+      return (`/img/${restaurant.photograph}.jp2`); // added .jpg extension to path; updated to .png 8/4/2018
     } else {
-      return (`/img/${restaurant.id}.png`) // assumes ID and photograph number are equal; updated to .png 8/4/2018
+      return (`/img/${restaurant.id}.jp2`) // assumes ID and photograph number are equal; updated to .png 8/4/2018
     }
     
   }

@@ -195,7 +195,7 @@ var red09 = '40.743797,-73.950652';
 var red10 = '40.743394,-73.954235';
 var width = window.screen.width;
 var height = '400'; 
-console.log(config.googleMapApi);
+//console.log(config.googleMapApi);
 staticMap = `https://maps.googleapis.com/maps/api/staticmap?center=${center}&zoom=${zoom}&size=${width}x${height}&maptype=roadmap&markers=color:red%7Clabel:1%7C${red01}&markers=color:red%7Clabel:2%7C${red02}&markers=color:red%7Clabel:3%7C${red03}&markers=color:red%7Clabel:4%7C${red04}&markers=color:red%7Clabel:5%7C${red05}&markers=color:red%7Clabel:6%7C${red06}&markers=color:red%7Clabel:7%7C${red07}&markers=color:red%7Clabel:8%7C${red08}&markers=color:red%7Clabel:9%7C${red09}&markers=color:red%7Clabel:10%7C${red10}&key=${config.googleMapApi}`;
 
 // initial render
