@@ -81,7 +81,7 @@ gulp.task('prod_js', function(cb) {
 gulp.task('prod_icons', function(cb) {
 	pump([
 			gulp.src('icons/*'),
-			gzip({ skipGrowingFiles : true }),
+			//gzip({ skipGrowingFiles : true }),
 			gulp.dest('prod/icons')
 		], 
 		cb

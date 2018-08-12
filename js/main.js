@@ -178,7 +178,8 @@ const fillCuisinesHTML = (cuisines = self.cuisines) => {
  */
 
 var sMap = document.getElementById('staticMap');
-var dMap = document.getElementById('map');
+var sMapCap = document.getElementById('staticMapCaption');
+var dMap = document.getElementById('mapOuter');
 
 //static map
 var center = '40.722216,-73.987501';
@@ -197,15 +198,29 @@ var width = window.screen.width;
 var height = '400'; 
 //console.log(config.googleMapApi);
 staticMap = `https://maps.googleapis.com/maps/api/staticmap?center=${center}&zoom=${zoom}&size=${width}x${height}&maptype=roadmap&markers=color:red%7Clabel:1%7C${red01}&markers=color:red%7Clabel:2%7C${red02}&markers=color:red%7Clabel:3%7C${red03}&markers=color:red%7Clabel:4%7C${red04}&markers=color:red%7Clabel:5%7C${red05}&markers=color:red%7Clabel:6%7C${red06}&markers=color:red%7Clabel:7%7C${red07}&markers=color:red%7Clabel:8%7C${red08}&markers=color:red%7Clabel:9%7C${red09}&markers=color:red%7Clabel:10%7C${red10}&key=${config.googleMapApi}`;
-
-// initial render
 sMap.setAttribute('src', staticMap);
+
+activeMap();
+window.addEventListener('resize', activeMap());
+
+function activeMap() {
+  if ( window.screen.width > 640) {
+    sMap.setAttribute('style', 'display: none');
+    sMapCap.setAttribute('style', 'display: none');
+    dMap.setAttribute('style', 'display: contents');
+  } else {
+    //sMap.setAttribute('style', 'display: contents');
+    //sMapCap.setAttribute('style', 'display: contents');
+    dMap.setAttribute('style', 'display: none');
+  }
+}
 
 // click to render dynamic map
 sMap.onclick = function () {
   // hide static map
-  sMap.removeAttribute('src');
-  document.getElementById('staticMapCaption').setAttribute('style', 'display: none');
+  //sMap.removeAttribute('src');
+  sMap.setAttribute('style', 'display: none');
+  sMapCap.setAttribute('style', 'display: none');
   // show dynamic map
   document.getElementById('mapOuter').removeAttribute('style');
 }

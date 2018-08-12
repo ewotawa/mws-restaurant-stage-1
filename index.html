@@ -44,10 +44,10 @@
     
     <!-- map container -->
     <section id="map-container">
-      <figure>
+      <div id="statcMapOuter">
         <img id="staticMap">
-        <figcaption id="staticMapCaption">Tap on map to activate</figcaption>
-      </figure>
+        <strong><p id="staticMapCaption">Tap on map to activate</p></strong>
+      </div>
       <div id="mapOuter" style="display: none"><div id="map" role="application"></div></div>
     </section>
 
@@ -60,10 +60,10 @@
   <script type="application/javascript" charset="utf-8" src="js/config.js"></script>
   <script type="application/javascript" charset="utf-8" src='js/idb.js'></script>
   <script type="application/javascript" charset="utf-8" src="sw.js"></script>
-  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
+  <script async type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
-  <script type="application/javascript" charset="utf-8" src='js/indexController.js'></script>
-  <script type="application/javascript" charset="utf-8" src='js/idb-test_index.js'></script>
+  <script async type="application/javascript" charset="utf-8" src='js/indexController.js'></script>
+  <script async type="application/javascript" charset="utf-8" src='js/idb-test_index.js'></script>
   <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap"></script> -->
   <script async defer id="googleApi"></script>
   

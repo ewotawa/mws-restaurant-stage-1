@@ -9,15 +9,12 @@ https://gist.github.com/derzorngottes/3b57edc1f996dddcab25
 To review this page after cloning from GitHub, you will need to create your own js/config.js file and to store the following code in that file:
 
 var config = {
-    googleMapApi: 'XXX',
-    fontAwesome: 'YYY'
+    googleMapApi: 'XXX'
 }
 
-where XXX represents your own valid Google Maps API key
-and YYY represents your own valid Font Awesome CDN code. 
+where XXX represents your own valid Google Maps API key.
 
-You can create your own Font Awesome CDN code by providing an e-mail address at the following site:
-https://cdn.fontawesome.com/ 
+In the terminal, run 'gulp prod' to migrate config.js to your production folder. 
 
 
 REFERENCES:
