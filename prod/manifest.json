@@ -1,0 +1,21 @@
+{
+	"short_name": "Restaurant Reviews",
+	"name": "Restaurant Reviews",
+	"icons": [
+		{
+			"src": "/icons/patrick-tomasso-499112-unsplash_192x192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/icons/patrick-tomasso-499112-unsplash_512x512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"start_url": "/",
+	"background_color": "#afafaf",
+	"display": "standalone",
+	"theme_color": "#afafaf",
+	"scope": "./"
+}

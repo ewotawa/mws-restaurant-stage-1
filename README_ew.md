@@ -1,3 +1,6 @@
+RUN THE PRODUCTION VERSION
+To see the latest version of the MWS Restaurant App, please run the python SimpleHTTPServer command from within the mws-restaurant-stage-1/prod directory.
+
 GOOGLE API KEY
 I modified the referencing of the Google API key so that I could push my API code to GitHub without revealing my personal API key. I followed the process outlined by derzorngottes in the post "Hide API Keys". You can read the details on this method at the following link:
 
@@ -80,3 +83,11 @@ https://developers.google.com/maps/documentation/maps-static/intro
 https://www.w3schools.com/cssref/sel_id.asp
 https://css-tricks.com/forums/topic/make-div-disappear-with-css-media-queries-on-screen-width/
 https://developer.mozilla.org/en-US/docs/Web/API/Screen/width
+
+(10) JavaScript minification and uglification
+https://github.com/gulpjs/gulp/blob/v3.9.1/docs/getting-started.md
+https://www.npmjs.com/package/gulp-uglify
+https://www.npmjs.com/package/pump
+https://www.npmjs.com/package/gulp-gzip
+https://www.npmjs.com/package/gulp-babel
+https://www.npmjs.com/package/gulp-sourcemaps

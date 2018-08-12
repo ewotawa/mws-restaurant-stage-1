@@ -147,7 +147,7 @@ function uniqueCuisinesHTML (cuisineArray) {
 /**
  * Set neighborhoods HTML.
  */
-fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
+const fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
   const select = document.getElementById('neighborhoods-select');
   select.setAttribute('name', 'Select Neighborhood');
   neighborhoods.forEach(neighborhood => {
@@ -162,7 +162,7 @@ fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
 /**
  * Set cuisines HTML.
  */
-fillCuisinesHTML = (cuisines = self.cuisines) => {
+const fillCuisinesHTML = (cuisines = self.cuisines) => {
   const select = document.getElementById('cuisines-select');
   cuisines.forEach(cuisine => {
     const option = document.createElement('option');
@@ -205,11 +205,12 @@ sMap.setAttribute('src', staticMap);
 sMap.onclick = function () {
   // hide static map
   sMap.removeAttribute('src');
+  document.getElementById('staticMapCaption').setAttribute('style', 'display: none');
   // show dynamic map
   document.getElementById('mapOuter').removeAttribute('style');
 }
 
-initMap = () => {
+const initMap = () => {
   let loc = {
     lat: 40.722216,
     lng: -73.987501
@@ -225,7 +226,7 @@ initMap = () => {
 /**
  * Update page and map for current restaurants.
  */
-updateRestaurants = () => {
+const updateRestaurants = () => {
   const cSelect = document.getElementById('cuisines-select');
   const nSelect = document.getElementById('neighborhoods-select');
 
@@ -305,7 +306,7 @@ updateRestaurants = () => {
   
   /* set selected attribute */
 
-  for (i = 0; i < cOption.length; i++) {
+  for (let i = 0; i < cOption.length; i++) {
     if (cOption[i].getAttribute('value') == cuisine) {
       cOption[i].setAttribute('selected', '');
     } else {
@@ -313,7 +314,7 @@ updateRestaurants = () => {
     }
   }
 
-  for (i = 0; i < nOption.length; i++) {
+  for (let i = 0; i < nOption.length; i++) {
     if (nOption[i].getAttribute('value') == neighborhood) {
       nOption[i].setAttribute('selected', '');
     } else {
@@ -326,7 +327,7 @@ updateRestaurants = () => {
 /**
  * Clear current restaurants, their HTML and remove their map markers.
  */
-resetRestaurants = (restaurants) => {
+const resetRestaurants = (restaurants) => {
   // Remove all restaurants
   self.restaurants = [];
   const ul = document.getElementById('restaurants-list');
@@ -341,7 +342,7 @@ resetRestaurants = (restaurants) => {
 /**
  * Create all restaurants HTML and add them to the webpage.
  */
-fillRestaurantsHTML = (restaurants = self.restaurants) => {
+const fillRestaurantsHTML = (restaurants = self.restaurants) => {
   const ul = document.getElementById('restaurants-list');
   restaurants.forEach(restaurant => {
     ul.append(createRestaurantHTML(restaurant));
@@ -352,7 +353,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 /**
  * Create restaurant HTML.
  */
-createRestaurantHTML = (restaurant) => {
+const createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
 
   const image = document.createElement('img');
@@ -388,7 +389,7 @@ createRestaurantHTML = (restaurant) => {
 /**
  * Add markers for current restaurants to the map.
  */
-addMarkersToMap = (restaurants = self.restaurants) => {
+const addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
     // Add marker to the map
     const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);

@@ -16,7 +16,6 @@ var CACHE_NAME = 'mws_cache_0';
 var urlsToCache = [
     '/',
     '/css/styles.css',
-    //'/data/restaurants.json',
     '/img/1.jp2',
     '/img/2.jp2',
     '/img/3.jp2',
@@ -27,7 +26,7 @@ var urlsToCache = [
     '/img/8.jp2',
     '/img/9.jp2',
     '/img/10.jp2',
-    '/config.js',
+    '/js/config.js',
     '/js/dbhelper.js',
     '/js/idb-test_index.js',
     '/js/idb.js',
@@ -36,12 +35,10 @@ var urlsToCache = [
     '/js/restaurant_info.js',
     '/icons/patrick-tomasso-499112-unsplash_192x192.png',
     '/icons/patrick-tomasso-499112-unsplash_512x512.png',
+    '/manifest.json',
     '/index.html',
     '/restaurant.html',
-    '/manifest.json',
-    //'https://code.jquery.com/jquery-1.10.2.js',
     'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
-    //pathStart + pathMid + pathEnd //main page google map
 ];
 
 self.addEventListener('install', function(event) {
