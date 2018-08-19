@@ -275,6 +275,7 @@ function addApiKey() {
   var pathEnd = 'libraries=places&callback=initMap';
   
   document.getElementById('googleApi').setAttribute('src', pathStart + apiKey + pathEnd);
+  document.getElementById('preconnectGoogleMapApi').setAttribute('href', pathStart + apiKey + pathEnd);
 }
 
 /*

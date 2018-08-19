@@ -1,5 +1,13 @@
 RUN THE PRODUCTION VERSION
-To see the latest version of the MWS Restaurant App, please run the python SimpleHTTPServer command from within the mws-restaurant-stage-1/prod directory.
+To see the latest version of the MWS Restaurant App, please cd into the mws-restaurant-stage-1 directory. Perform the following steps in the following order:
+(1) create a config.js file containing your Google Maps API key. See GOOGLE API KEY section below.
+(2) Run the following gulp command to move your Google Maps API key into the production folder:
+		gulp prod
+(3) Run the following gulp command to launch the page in your default browser (assuming Chrome for udacity) on port 3000:
+		gulp browser-sync
+
+
+
 
 GOOGLE API KEY
 I modified the referencing of the Google API key so that I could push my API code to GitHub without revealing my personal API key. I followed the process outlined by derzorngottes in the post "Hide API Keys". You can read the details on this method at the following link:
@@ -15,6 +23,9 @@ var config = {
 where XXX represents your own valid Google Maps API key.
 
 In the terminal, run 'gulp prod' to migrate config.js to your production folder. 
+
+
+
 
 
 REFERENCES:
@@ -38,6 +49,9 @@ References for fetch requests:
 (2) http://developer.mozilla.org/
     (a) Using Fetch
 (3) http://www.w3schools.com
+
+
+
 
 REFERENCES: PART II
 
@@ -80,6 +94,9 @@ https://developers.google.com/maps/documentation/maps-static/intro
 https://www.w3schools.com/cssref/sel_id.asp
 https://css-tricks.com/forums/topic/make-div-disappear-with-css-media-queries-on-screen-width/
 https://developer.mozilla.org/en-US/docs/Web/API/Screen/width
+https://developer.mozilla.org/en-US/docs/Web/Events/resize
+https://developer.mozilla.org/en-US/docs/Web/API/Screen/width
+https://developer.mozilla.org/en-US/docs/Web/Events/load
 
 (10) JavaScript minification and uglification
 https://github.com/gulpjs/gulp/blob/v3.9.1/docs/getting-started.md
@@ -88,3 +105,20 @@ https://www.npmjs.com/package/pump
 https://www.npmjs.com/package/gulp-gzip
 https://www.npmjs.com/package/gulp-babel
 https://www.npmjs.com/package/gulp-sourcemaps
+
+(11) compression and browserSync
+https://github.com/BrowserSync/browser-sync/issues/451
+https://www.npmjs.com/package/compression
+https://www.browsersync.io/docs/options/
+https://browsersync.io/docs/gulp
+
+(12) progressive jpg
+https://www.npmjs.com/package/imagemin
+https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/automating-image-optimization/
+https://www.npmjs.com/package/gulp-imagemin
+https://www.tecmint.com/optimize-and-compress-jpeg-or-png-batch-images-linux-commandline/
+https://fettblog.eu/snippets/node.js/progressive-jpegs-gm/
+https://stackoverflow.com/questions/34141246/how-to-create-lossless-progressive-jpg-jpeg-images-with-gulp
+https://www.npmjs.com/package/gulp-gm
+http://aheckmann.github.io/gm/docs.html
+https://www.npmjs.com/package/is-progressive

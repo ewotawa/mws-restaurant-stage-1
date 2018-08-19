@@ -446,6 +446,7 @@ function addApiKey() {
   
   document.getElementById('googleApi').setAttribute('src', pathStart + apiKey + pathEnd);
   /*document.getElementById('fontAwesome').setAttribute('src', fontAwesome);*/
+  document.getElementById('preconnectGoogleMapApi').setAttribute('href', pathStart + apiKey + pathEnd);
 }
 
 /*
@@ -461,5 +462,6 @@ $( document ).ready(function() {
 document.addEventListener("DOMContentLoaded", function() {
   console.log("ready!");
   addApiKey();
+  activeMap();
 });
 
