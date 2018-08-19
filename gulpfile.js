@@ -23,7 +23,7 @@ gulp.task('prod', [
 	'prod_js_other',
 	'prod_img',
 	'prod_icons',
-	'prod_manifest'
+	'prod_json'
 	]
 );
 
@@ -153,9 +153,9 @@ gulp.task('prod_icons', function(cb) {
 	);
 });
 
-gulp.task('prod_manifest', function(cb) {
+gulp.task('prod_json', function(cb) {
 	pump([
-			gulp.src('manifest.json'),
+			gulp.src(['manifest.json','package.json','package-lock.json']),
 			//gzip({ skipGrowingFiles : true }),
 			gulp.dest('./prod')
 		], 
