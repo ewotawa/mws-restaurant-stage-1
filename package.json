@@ -22,7 +22,8 @@
     "imagemin-gifsicle": "^5.2.0",
     "imagemin-jpegtran": "^5.0.2",
     "is-progressive": "^3.0.0",
-    "pump": "^3.0.0"
+    "pump": "^3.0.0",
+    "workbox-build": "^3.6.2"
   },
   "devDependencies": {},
   "scripts": {

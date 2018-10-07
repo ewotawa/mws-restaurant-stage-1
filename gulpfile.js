@@ -43,7 +43,7 @@ gulp.task('browser-sync', function() {
 
 gulp.task('prod_img', function(cb) {
 	pump([
-			gulp.src('img/*.jpg',),
+			gulp.src('img/*.jpg'),
 			gm(function(gmfile, done) {
 				gmfile.size(function(err, size) {
 					done(null, gmfile

@@ -1,9 +1,19 @@
 RUN THE PRODUCTION VERSION
 To see the latest version of the MWS Restaurant App, please cd into the mws-restaurant-stage-1 directory. Perform the following steps in the following order:
-(1) create a config.js file containing your Google Maps API key. See GOOGLE API KEY section below.
-(2) Run the following gulp command to move your Google Maps API key into the production folder:
-		gulp prod
-(3) Run the following gulp command to launch the page in your default browser (assuming Chrome for udacity) on port 3000:
+
+(1) reset npm packages on local system and synchronize with those in package.json:
+        
+        rm -rf node_modules
+        npm install
+
+(2) create a config.js file containing your Google Maps API key. See GOOGLE API KEY section below.
+
+(3) Run the following gulp command to move your Google Maps API key into the production folder:
+		
+        gulp prod
+
+(4) Run the following gulp command to launch the page in your default browser (assuming Chrome for udacity) on port 3000:
+
 		gulp browser-sync
 
 
@@ -122,3 +132,21 @@ https://stackoverflow.com/questions/34141246/how-to-create-lossless-progressive-
 https://www.npmjs.com/package/gulp-gm
 http://aheckmann.github.io/gm/docs.html
 https://www.npmjs.com/package/is-progressive
+
+(13) synchronize npm packages across machines
+https://github.com/olefredrik/FoundationPress/issues/780
+
+(14) WorkBox: installed with 'sudo npm i workbox-build'
+https://www.youtube.com/watch?v=XbCwxeCqxw4
+https://www.npmjs.com/package/workbox-build
+https://developers.google.com/web/tools/workbox/modules/workbox-background-sync
+https://github.com/WICG/BackgroundSync/blob/master/explainer.md
+https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine
+https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/Online_and_offline_events
+
+(15) lazy load images
+https://www.youtube.com/watch?v=XbCwxeCqxw4
+https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/unobserve
+https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
+https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+https://developers.google.com/web/updates/2016/04/intersectionobserver

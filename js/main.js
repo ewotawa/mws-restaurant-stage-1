@@ -370,11 +370,52 @@ const fillRestaurantsHTML = (restaurants = self.restaurants) => {
  */
 const createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
-
   const image = document.createElement('img');
-  image.className = 'restaurant-img';
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.setAttribute('alt', 'promotional photo for ' + restaurant.name);
+
+  // lazy load images
+  // create an intersection observer
+  var options = {
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  // if browser supports observer, use it, else load image
+  let observer;
+
+  if('IntersectionObserver' in window) {
+    console.log('IntersectionObserver is in window');
+    observer = new IntersectionObserver(callback, options);
+    // give the observer a target element to watch
+    observer.observe(image);
+  } else {
+    console.log('Browser does not support IntersectionObserver; images not lazy loaded');
+    loadImage(image);
+  }
+
+  // move image attributes into a variable, loadImage
+  function loadImage() {
+    image.className = 'restaurant-img';
+    image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  }
+
+
+  // whenever the target meets a theshold specified for the IntersectionObserver, the callback is invoked.
+  // callback receives list of IntersectionObserverEntry objects and the observer.
+
+  function callback(entries, observer) {
+    entries.forEach(entry => {
+      if(entry.intersectionRatio > 0 ) {
+        // load the image ...
+        loadImage(entry.target);
+        // ... and stop observing
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+
+  // finished lazy loading images
+
   li.append(image);
 
   const name = document.createElement('h2');

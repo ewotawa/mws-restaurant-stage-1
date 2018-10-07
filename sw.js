@@ -3,46 +3,77 @@
 console.log('this is the service worker');
 
 
-// name cache
-var CACHE_NAME = 'mws_cache_0';
 
-// list urls to cache
 
-// url components for google map api
-// var pathStart = 'https://maps.googleapis.com/maps/api/js?';
-// var pathEnd = 'libraries=places&callback=initMap';
-// var pathMid = config.googleMapApi;
+// Import WorkBox
+    importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js');
 
-var urlsToCache = [
-    '/',
-    '/css/styles.css',
-    '/img/1.jpg',
-    '/img/2.jpg',
-    '/img/3.jpg',
-    '/img/4.jpg',
-    '/img/5.jpg',
-    '/img/6.jpg',
-    '/img/7.jpg',
-    '/img/8.jpg',
-    '/img/9.jpg',
-    '/img/10.jpg',
-    // '/js/config.js',
-    // '/js/dbhelper.js',
-    '/js/idb-test_index.js',
-    '/js/idb.js',
-    '/js/indexController.js',
-    // '/js/main.js',
-    // '/js/restaurant_info.js',
-    '/js/js_main.js',
-    '/js/js_restaurant.js',
-    // '/js/js_db',
-    '/icons/patrick-tomasso-499112-unsplash_192x192.png',
-    '/icons/patrick-tomasso-499112-unsplash_512x512.png',
-    '/manifest.json',
-    '/index.html',
-    '/restaurant.html',
-    'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
-];
+    if (workbox) {
+        console.log('WorkBox is loaded.');
+    } else {
+        console.log('WorkBox is NOT loaded.');
+    }
+
+
+
+
+// cache with WorkBox: non-image assets
+    workbox.routing.registerRoute(
+      new RegExp('.*\.*'),
+      workbox.strategies.networkFirst()
+    );
+
+
+
+
+// WorkBox Background Sync
+    // create a notification to show that the queue is working.
+        const showNotification = () => {
+            self.registration.showNotification('BackgroundSync success!', {body: '🦆 🐧 🦆 🐧'});
+        };
+
+    // create a queue that represents failed HTTP requests. 
+        const bgSyncPlugin = new workbox.backgroundSync.Plugin(
+            'mwsQueue', 
+            {
+                callbacks: {
+                    queueDidReplay: showNotification
+                }
+            }
+        );
+
+        const networkWithBackgroundSync = new workbox.strategies.NetworkOnly({
+          plugins: [bgSyncPlugin],
+        });
+
+    // plugin is added to the configuration of handler networkWithBackgroundSync
+        workbox.routing.registerRoute(
+          'http://localhost:1337/reviews/',
+          networkWithBackgroundSync,
+          'POST'
+        );
+
+        workbox.routing.registerRoute(
+          'http://localhost:1337/restaurants/<restaurant_id>/?is_favorite=true',
+          networkWithBackgroundSync,
+          'PUT'
+        );
+
+        workbox.routing.registerRoute(
+          'http://localhost:1337/restaurants/<restaurant_id>/?is_favorite=false',
+          networkWithBackgroundSync,
+          'PUT'
+        );
+
+        workbox.routing.registerRoute(
+          'http://localhost:1337/restaurants/<restaurant_id>/?is_favorite=false',
+          networkWithBackgroundSync,
+          'PUT'
+        );
+
+// Console logs for service worker events
+
+/* [a]
 
 self.addEventListener('install', function(event) {
     console.log('service worker installing');
@@ -60,6 +91,8 @@ self.addEventListener('activate', function(event) {
     console.log('service worker activating');
 });
 
+[a] */
+
 // add elements to the cache when the page's hash changes
 /* 
 self.addEventListener('hashchange', function(event) {
@@ -73,6 +106,8 @@ self.addEventListener('hashchange', function(event) {
     );
 }, false);
 */
+
+/* [b]
 
 //handle fetch events
 self.addEventListener('fetch', function(event) {
@@ -93,3 +128,4 @@ self.addEventListener('fetch', function(event) {
     );
 });
 
+[b] */
