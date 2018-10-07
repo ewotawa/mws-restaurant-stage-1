@@ -134,6 +134,7 @@ http://aheckmann.github.io/gm/docs.html
 https://www.npmjs.com/package/is-progressive
 
 (13) synchronize npm packages across machines
+<<<<<<< HEAD
 https://github.com/olefredrik/FoundationPress/issues/780
 
 (14) WorkBox: installed with 'sudo npm i workbox-build'
@@ -150,3 +151,6 @@ https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/unobserve
 https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
 https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
 https://developers.google.com/web/updates/2016/04/intersectionobserver
+=======
+https://github.com/olefredrik/FoundationPress/issues/780
+>>>>>>> 4836775e9f631b6ea38eff405bed9264b5fe700c
