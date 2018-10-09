@@ -10,6 +10,11 @@ var fontAwesome = config.fontAwesome;
 
 var burger = document.getElementById("hamburger");
 
+var put = 'http://localhost:1337/restaurants/';
+var putLike = '/?is_favorite=true';
+var putUnLike = '/?is_favorite=false';
+var likeData = {"is_favorite": true};
+var unlikeData = {"is_favorite": false};
 
 /**
  * set up IDB database
@@ -436,6 +441,76 @@ const createRestaurantHTML = (restaurant) => {
   more.setAttribute('name', 'View details for ' + restaurant.name);
   more.setAttribute('role', 'button');
   li.append(more);
+
+  let likeId = '#like' + restaurant.id;
+
+  const like = document.createElement('button');
+  like.innerHTML = '👍 🐧 Favorite';
+  like.setAttribute('name', 'Favorite restaurant');
+  like.setAttribute('role', 'button');
+  like.setAttribute('id', likeId);
+
+  console.log(likeId + ' ' + restaurant.is_favorite);
+  
+  if (restaurant.is_favorite == true) {
+    console.log(likeId + ' class before is ' + like.getAttribute('class'));
+    like.setAttribute('class', 'buttonBlue');
+    console.log(likeId + ' class after is ' + like.getAttribute('class'));
+  } else {
+    console.log(likeId + ' class before is ' + like.getAttribute('class'));
+    like.setAttribute('class', 'buttonOrange');
+    console.log(likeId + ' class after is ' + like.getAttribute('class'));
+  }
+
+  li.append(like);
+
+  // toggle like button, send fetch PUT event to server
+  like.onclick = function() {
+    
+    console.log('onClickLike: ' + likeId);
+    
+    // set variables for fetch event
+    if (like.getAttribute('class') == 'buttonOrange') {
+      
+      // fetch put for like
+      let url = put + restaurant.id + putLike;
+      let putBody = likeData;
+
+      fetch(url, {
+      method: 'PUT',
+      body: JSON.stringify(putBody),
+      headers: {
+        'Content-Type': 'application/jason'
+        }
+      }).then(res => res.json())
+      .then(response => console.log('Success: ', JSON.stringify(response)))
+      .catch(error => console.log('Error: ', error));
+
+    } else {
+      
+      // fetch put for unlike
+      let url = put + restaurant.id + putUnLike;
+      let putBody = unlikeData;
+    
+      // fetch event
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(putBody),
+        headers: {
+          'Content-Type': 'application/jason'
+        }
+      }).then(res => res.json())
+      .then(response => console.log('Success: ', JSON.stringify(response)))
+      .catch(error => console.log('Error: ', error));
+
+
+    }
+
+    
+    // button style toggle
+    like.classList.toggle('buttonOrange');
+    like.classList.toggle('buttonBlue');
+  }
 
   return li
 }

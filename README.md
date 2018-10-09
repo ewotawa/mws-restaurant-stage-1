@@ -157,9 +157,11 @@ https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
 https://developers.google.com/web/updates/2016/04/intersectionobserver
 https://github.com/olefredrik/FoundationPress/issues/780
 
+(3) styling and functionality of like button
+https://www.youtube.com/watch?v=XbCwxeCqxw4
+https://www.w3schools.com/howto/howto_js_toggle_class.asp
 
-
-
+(4) workbox asynchronous PUT and POST requests
 
 
 

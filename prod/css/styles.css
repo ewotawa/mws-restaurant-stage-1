@@ -21,15 +21,17 @@ a {
   /* changed color for accessibility */
   color: #BC5A01;
 	text-decoration: none;
+  margin-left: 2px;
+  margin-right: 2px;
 }
-a:hover, a:focus {
+a:hover, a:focus, button:hover, button:focus {
   /* change color for accessibility */
   color: #007dbb;
   text-decoration: none;
   /* add focus */
   box-shadow: 0 0 8px 3px;
 }
-a img{
+a img {
 	border: none 0px #fff;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -190,6 +192,39 @@ nav h1 a {
   font-size: 11pt;
 }
 #restaurants-list li a {
+  /* changed color for accessibility */
+  background-color: #BC5A01;
+  border-bottom: 3px solid #eee;
+  color: #fff;
+  display: inline-block;
+  font-size: 10pt;
+  margin: 15px 0 0;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+#restaurants-list li a:hover, #restaurants-list li a:focus {
+  /* change color for accessibility */
+  color: #007dbb;
+  text-decoration: none;
+  /* add focus */
+  box-shadow: 0 0 8px 3px;
+}
+.buttonBlue {
+  /* changed color for accessibility */
+  background-color: #007dbb;
+  border-bottom: 3px solid #eee;
+  color: #fff;
+  display: inline-block;
+  font-size: 10pt;
+  margin: 15px 0 0;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;}
+
+.buttonOrange {
   /* changed color for accessibility */
   background-color: #BC5A01;
   border-bottom: 3px solid #eee;

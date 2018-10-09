@@ -33,43 +33,19 @@ console.log('this is the service worker');
         };
 
     // create a queue that represents failed HTTP requests. 
-        const bgSyncPlugin = new workbox.backgroundSync.Plugin(
-            'mwsQueue', 
-            {
-                callbacks: {
-                    queueDidReplay: showNotification
-                }
-            }
-        );
+        const queue = new workbox.backgroundSync.Queue('mwsQueue');
 
-        const networkWithBackgroundSync = new workbox.strategies.NetworkOnly({
-          plugins: [bgSyncPlugin],
+
+    // add event listener for fetch requests
+        self.addEventListener('fetch', (event) => {
+          // Clone the request to ensure it's saved to read when adding to the Queue.
+          const promiseChain = fetch(event.request.clone())
+          .catch((err) => {
+              return queue.addRequest(event.request);
+          });
+
+          event.waitUntil(promiseChain);
         });
-
-    // plugin is added to the configuration of handler networkWithBackgroundSync
-        workbox.routing.registerRoute(
-          'http://localhost:1337/reviews/',
-          networkWithBackgroundSync,
-          'POST'
-        );
-
-        workbox.routing.registerRoute(
-          'http://localhost:1337/restaurants/<restaurant_id>/?is_favorite=true',
-          networkWithBackgroundSync,
-          'PUT'
-        );
-
-        workbox.routing.registerRoute(
-          'http://localhost:1337/restaurants/<restaurant_id>/?is_favorite=false',
-          networkWithBackgroundSync,
-          'PUT'
-        );
-
-        workbox.routing.registerRoute(
-          'http://localhost:1337/restaurants/<restaurant_id>/?is_favorite=false',
-          networkWithBackgroundSync,
-          'PUT'
-        );
 
 // Console logs for service worker events
 
