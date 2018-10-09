@@ -160,8 +160,14 @@ https://github.com/olefredrik/FoundationPress/issues/780
 (3) styling and functionality of like button
 https://www.youtube.com/watch?v=XbCwxeCqxw4
 https://www.w3schools.com/howto/howto_js_toggle_class.asp
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
 
 (4) workbox asynchronous PUT and POST requests
+https://developers.google.com/web/tools/workbox/modules/workbox-background-sync
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+https://developers.google.com/web/tools/workbox/reference-docs/latest/workbox.routing
+https://developers.google.com/web/tools/workbox/reference-docs/latest/workbox.routing.Router#registerRoute
+
 
 
 
