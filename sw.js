@@ -47,6 +47,7 @@ console.log('this is the service worker');
           event.waitUntil(promiseChain);
         });
 
+
 // Console logs for service worker events
 
 /* [a]

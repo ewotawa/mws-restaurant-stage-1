@@ -451,13 +451,12 @@ const createRestaurantHTML = (restaurant) => {
   like.setAttribute('id', likeId);
 
   console.log(likeId + ' ' + restaurant.is_favorite);
+  console.log(typeof restaurant.is_favorite);
   
-  if (restaurant.is_favorite == true) {
-    console.log(likeId + ' class before is ' + like.getAttribute('class'));
+  if (restaurant.is_favorite == 'true') {
     like.setAttribute('class', 'buttonBlue');
     console.log(likeId + ' class after is ' + like.getAttribute('class'));
   } else {
-    console.log(likeId + ' class before is ' + like.getAttribute('class'));
     like.setAttribute('class', 'buttonOrange');
     console.log(likeId + ' class after is ' + like.getAttribute('class'));
   }
