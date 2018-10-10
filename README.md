@@ -3,12 +3,12 @@
 # Run the production version of the site
 To see the latest version of the MWS Restaurant App, please `cd` into the `mws-restaurant-stage-1` directory. Perform the following steps in the following order:
 
-1. reset npm packages on local system and synchronize with those in `package.json`:
+1. Reset npm packages on local system and synchronize with those in `package.json`:
         
         rm -rf node_modules
         npm install
 
-2. create a `config.js` file containing your Google Maps API key. See GOOGLE API KEY section below.
+2. Create a `config.js` file containing your Google Maps API key. See GOOGLE API KEY section below.
 
 3. Run the following gulp command to move your Google Maps API key into the production folder:
 		
@@ -23,6 +23,7 @@ To see the latest version of the MWS Restaurant App, please `cd` into the `mws-r
 		python -m SimpleHTTPServer 8000
 
 		python3 -m http.server 8000
+
 
 # Google API Key
 I modified the referencing of the Google API key so that I could push my API code to GitHub without revealing my personal API key. I followed the process outlined by **derzorngottes** in the post *Hide API Keys*. You can read the details on this method at the following link:
@@ -44,21 +45,21 @@ In the terminal, run `gulp prod` to migrate `config.js` to your production folde
 See the section titled *Testing Workbox Background Sync* at the following link:
 https://developers.google.com/web/tools/workbox/modules/workbox-background-sync
 
-1. Suspend the server for mws-restaurant-stage-3
+1. Suspend the server for `mws-restaurant-stage-3`
 
-2. Perform a PUT or POST request that normally would be sent to the server.
+2. Perform a `PUT` or `POST` request that normally would be sent to the server.
 
-3. Watch for the green-workbox-labeled lines in the console. Non-synced items will be stored in an IndexedDB database called mwsQueue.
+3. Watch for the green-workbox-labeled lines in the console. Non-synced items will be stored in an IndexedDB database called `mwsQueue`.
 
-4. Restore the server or mws-restaurant-stage-3
+4. Restore the server on `mws-restaurant-stage-3`.
 
-5. Enter the following text into the Sync prompt on the service worker (see illustration in Google Developers article):
+5. Enter the following text into the `Sync` prompt on the service worker (see illustration in Google Developers article):
 
 		workbox-background-sync:'mwsQueue'
 
-6. Watch for the green-workbox-labeled lines in the console. You will see a re-test of the stored PUT or POST request. 
+6. Watch for the green-workbox-labeled lines in the console. You will see a re-test of the stored `PUT` or `POST` request. 
 
-7. Refresh the page once, possibly twice. Watch for a final green-workbox-labeled line confirming the PUT or POST request completion on the server.
+7. Refresh the page once, possibly twice. Watch for a final green-workbox-labeled line confirming the `PUT` or `POST` request completion on the server.
 
 
 # References, Part I
