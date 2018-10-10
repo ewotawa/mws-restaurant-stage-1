@@ -1,4 +1,6 @@
-#Run the production version of the site
+# Mobile Web Specialist Certification Course
+
+# Run the production version of the site
 To see the latest version of the MWS Restaurant App, please `cd` into the `mws-restaurant-stage-1` directory. Perform the following steps in the following order:
 
 1. reset npm packages on local system and synchronize with those in `package.json`:
@@ -22,7 +24,7 @@ To see the latest version of the MWS Restaurant App, please `cd` into the `mws-r
 
 		python3 -m http.server 8000
 
-#Google API Key
+# Google API Key
 I modified the referencing of the Google API key so that I could push my API code to GitHub without revealing my personal API key. I followed the process outlined by **derzorngottes** in the post *Hide API Keys*. You can read the details on this method at the following link:
 
 https://gist.github.com/derzorngottes/3b57edc1f996dddcab25
@@ -38,7 +40,7 @@ where **XXX** represents your own valid Google Maps API key.
 In the terminal, run `gulp prod` to migrate `config.js` to your production folder. 
 
 
-#To Test Background Sync in WorkBox
+# To Test Background Sync in WorkBox
 See the section titled *Testing Workbox Background Sync* at the following link:
 https://developers.google.com/web/tools/workbox/modules/workbox-background-sync
 
@@ -59,15 +61,15 @@ https://developers.google.com/web/tools/workbox/modules/workbox-background-sync
 7. Refresh the page once, possibly twice. Watch for a final green-workbox-labeled line confirming the PUT or POST request completion on the server.
 
 
-#References, Part I
+# References, Part I
 
-##References specific to service worker research:
+## References specific to service worker research:
 * course content
 * https://developers.google.com/web/fundamentals/codelabs/debugging-service-workers/
 * placement of sw.js in file structure: https://stackoverflow.com/questions/34147562/service-worker-is-caching-files-but-fetch-event-is-never-fired
 * https://developers.google.com/web/fundamentals/primers/service-workers/
 
-##References for JavaScript, CSS, HTML functionality:
+## References for JavaScript, CSS, HTML functionality:
 * course content
 * https://developer.mozilla.org/
 * http://www.w3schools.com
@@ -75,49 +77,49 @@ https://developers.google.com/web/tools/workbox/modules/workbox-background-sync
 **Note:** the machine I am using to test the site does not have sufficient resources to run a Lighthouse accessibility audit. Alternatively, there may be a bug in how Chromium performs this audit relative to the Chrome browser. (I am using Linux.) Instead, I used the following accessibility auditor available through Firefox:
 https://addons.mozilla.org/en-US/firefox/addon/tota11y-accessibility-toolkit/?src=search
 
-##References for fetch requests:
+## References for fetch requests:
 * course content 
 * http://developer.mozilla.org/
 	* Using Fetch
 * http://www.w3schools.com
 
 
-#References, Part II
+# References, Part II
 
-##Improve audit responses:
+## Improve audit responses:
 
-###Deprecate jQuery in favor of plain-vanilla Javascript:
+### Deprecate jQuery in favor of plain-vanilla Javascript:
 * https://stackoverflow.com/questions/2304941/what-is-the-non-jquery-equivalent-of-document-ready
 
-###Preload fontawesome stylesheet
+### Preload fontawesome stylesheet
 * https://developers.google.com/web/updates/2016/03/link-rel-preload
 * https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/
 * **Note:** deprecated in favor of subscribing to the JavaScript CDN. See notes on `config.js` file above.
 
-###Preconnect to sites
+### Preconnect to sites
 * https://developers.google.com/web/fundamentals/performance/resource-prioritization#preconnect
 
-###Add a progressive Web App Manifest
+### Add a progressive Web App Manifest
 * https://developers.google.com/web/tools/lighthouse/audits/install-prompt
 * https://developers.google.com/web/fundamentals/web-app-manifest/
 
-###Icon for pwa manifest
+### Icon for pwa manifest
 * Photo by Patrick Tomasso on Unsplash
 * Patrick Tomasso: https://unsplash.com/photos/GXXYkSwndP4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 * Unsplash: https://unsplash.com/search/photos/restaurant?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 
-###Meta tag for theme color
+### Meta tag for theme color
 https://developers.google.com/web/tools/lighthouse/audits/address-bar
 
-###Add aria-labelled by detail
+### Add aria-labelled by detail
 * https://dequeuniversity.com/rules/axe/2.2/label?application=lighthouse
 * https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute
 * https://www.w3.org/TR/WCAG20-TECHS/ARIA7.html
 
-###Improve color contrast for accessibility
+### Improve color contrast for accessibility
 * https://dequeuniversity.com/rules/axe/2.2/color-contrast?application=lighthouse
 
-##Static/dynamic map hybrid
+## Static/dynamic map hybrid
 * https://medium.com/@lorenzozaccagnini/improve-google-map-performance-in-your-pwa-fe24a6b3a37b
 * https://developers.google.com/maps/documentation/maps-static/intro
 * https://www.w3schools.com/cssref/sel_id.asp
@@ -127,7 +129,7 @@ https://developers.google.com/web/tools/lighthouse/audits/address-bar
 * https://developer.mozilla.org/en-US/docs/Web/API/Screen/width
 * https://developer.mozilla.org/en-US/docs/Web/Events/load
 
-##JavaScript minification and uglification
+## JavaScript minification and uglification
 * https://github.com/gulpjs/gulp/blob/v3.9.1/docs/getting-started.md
 * https://www.npmjs.com/package/gulp-uglify
 * https://www.npmjs.com/package/pump
@@ -135,13 +137,13 @@ https://developers.google.com/web/tools/lighthouse/audits/address-bar
 * https://www.npmjs.com/package/gulp-babel
 * https://www.npmjs.com/package/gulp-sourcemaps
 
-##Compression and browserSync
+## Compression and browserSync
 * https://github.com/BrowserSync/browser-sync/issues/451
 * https://www.npmjs.com/package/compression
 * https://www.browsersync.io/docs/options/
 * https://browsersync.io/docs/gulp
 
-##Progressive jpg
+## Progressive jpg
 * https://www.npmjs.com/package/imagemin
 * https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/automating-image-optimization/
 * https://www.npmjs.com/package/gulp-imagemin
@@ -152,13 +154,13 @@ https://developers.google.com/web/tools/lighthouse/audits/address-bar
 * http://aheckmann.github.io/gm/docs.html
 * https://www.npmjs.com/package/is-progressive
 
-##Synchronize npm packages across machines
+## Synchronize npm packages across machines
 * https://github.com/olefredrik/FoundationPress/issues/780
 
 
-#References, Part III
+# References, Part III
 
-##WorkBox: installed with 'sudo npm i workbox-build'
+## WorkBox: installed with `sudo npm i workbox-build`
 * https://www.youtube.com/watch?v=XbCwxeCqxw4
 * https://www.npmjs.com/package/workbox-build
 * https://developers.google.com/web/tools/workbox/modules/workbox-background-sync
@@ -166,7 +168,7 @@ https://developers.google.com/web/tools/lighthouse/audits/address-bar
 * https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine
 * https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/Online_and_offline_events
 
-##Lazy load images
+## Lazy load images
 * https://www.youtube.com/watch?v=XbCwxeCqxw4
 * https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/unobserve
 * https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
@@ -174,12 +176,12 @@ https://developers.google.com/web/tools/lighthouse/audits/address-bar
 * https://developers.google.com/web/updates/2016/04/intersectionobserver
 * https://github.com/olefredrik/FoundationPress/issues/780
 
-##Styling and functionality of like button
+## Styling and functionality of like button
 * https://www.youtube.com/watch?v=XbCwxeCqxw4
 * https://www.w3schools.com/howto/howto_js_toggle_class.asp
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
 
-##WorkBox asynchronous PUT and POST requests
+## WorkBox asynchronous `PUT` and `POST` requests
 * https://developers.google.com/web/tools/workbox/modules/workbox-background-sync
 * https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 * https://developers.google.com/web/tools/workbox/reference-docs/latest/workbox.routing
