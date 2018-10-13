@@ -40,6 +40,9 @@ if (navigator.serviceWorker) {
           case 0:
               // set up a key that's separate to the data
               var mwsDataStore = upgradeDb.createObjectStore('mwsData', {keyPath: 'id'});
+              // set up a separate object store for the restaurant reviews
+              var mwsReviewStore = upgradeDb.createObjectStore('mwsReviewData', {keyPath: 'id'});
+              mwsReviewStore.createIndex('restaurant', 'restaurant-id');
       }
   });  
   
@@ -451,7 +454,7 @@ const createRestaurantHTML = (restaurant) => {
   like.setAttribute('id', likeId);
 
   console.log(likeId + ' ' + restaurant.is_favorite);
-  console.log(typeof restaurant.is_favorite);
+  console.log(likeId + ' ' + typeof restaurant.is_favorite);
   
   if (restaurant.is_favorite == 'true') {
     like.setAttribute('class', 'buttonBlue');

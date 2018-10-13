@@ -18,6 +18,29 @@ function fetchUniqueRestaurant (data) {
   } 
 }
 
+function fetchReviews (data) {
+  const reviews = data;
+  let results = reviews;
+  console.log(results);
+  const id = getParameterByName('id');
+  console.log('id from URL: ' + id);
+  if (id) {
+    results = results.filter(r => r.restaurant_id == id);
+    console.log(results);
+    return results;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Initialize Google map, called from HTML.
  * deprecated fetchRestaurantFromURL (XHR dependent) in favor of fetch API
@@ -33,6 +56,9 @@ window.initMap = () => {
             case 0:
                 // set up a key that's separate to the data
                 var mwsDataStore = upgradeDb.createObjectStore('mwsData', {keyPath: 'id'});
+                // set up a separate object store for the restaurant reviews
+                var mwsReviewStore = upgradeDb.createObjectStore('mwsReviewData', {keyPath: 'id'});
+                mwsReviewStore.createIndex('restaurant', 'restaurant-id');
         }
     });  
     
@@ -48,7 +74,7 @@ window.initMap = () => {
       .then(fetchRestaurantMap)
       .catch(error => console.error(error)); 
     }
-    
+
     // if there's a service worker, pull the data out of IndexedDB
     getRestaurant();
   
@@ -79,6 +105,13 @@ window.initMap = () => {
 
 
 
+
+
+
+
+
+
+
 /**
  * Get current restaurant from page URL.
  * deprecated fetchRestaurantFromURL() (XHR dependent) in favor of fetch API
@@ -91,6 +124,9 @@ if (navigator.serviceWorker) {
           case 0:
               // set up a key that's separate to the data
               var mwsDataStore = upgradeDb.createObjectStore('mwsData', {keyPath: 'id'});
+              // set up a separate object store for the restaurant reviews
+              var mwsReviewStore = upgradeDb.createObjectStore('mwsReviewData', {keyPath: 'id'});
+              mwsReviewStore.createIndex('restaurant', 'restaurant-id');
       }
   });  
   
@@ -125,10 +161,84 @@ if (navigator.serviceWorker) {
 }
 
 
+
+
+
+
+
+
+
+
+/**
+ * Get current restaurant from page URL.
+ * Pull restaurant review information and populate page. 
+ */
+// implement IndexedDB where service worker is available. Else use fetch API.
+if (navigator.serviceWorker) {
+  var dbPromise = idb.open('mwsStage2', 1, function(upgradeDb) {
+      // set up switch to manage version control
+      switch(upgradeDb.oldVersion) {
+          case 0:
+              // set up a key that's separate to the data
+              var mwsDataStore = upgradeDb.createObjectStore('mwsData', {keyPath: 'id'});
+              // set up a separate object store for the restaurant reviews
+              var mwsReviewStore = upgradeDb.createObjectStore('mwsReviewData', {keyPath: 'id'});
+              mwsReviewStore.createIndex('restaurant', 'restaurant-id');
+      }
+  });  
+  
+  // PUT DATA INTO DATABASE: create a fetch event to pull the data from the server. see main.js
+
+  // PULL DATA OUT OF DATABASE: get all Restaurants
+  function getRestaurant () {
+    dbPromise.then(function(db) {
+      var tx = db.transaction('mwsReviewData', 'readonly');
+      var store = tx.objectStore('mwsReviewData');
+      return store.getAll();
+    }).then(fetchReviews)
+    .catch(error => console.error(error));
+  }
+  
+  // if there's a service worker, pull the data out of IndexedDB
+  getRestaurant();
+
+} else {
+
+  // fetch events for browsers that do not have service workers
+  
+  // restaurants
+  fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
+    return response.json();
+  }).then(fetchRestaurantsAll)
+  .then(fetchUniqueRestaurant)
+  .then(fetchUniqueRestHTML)
+  .catch(error => console.error(error));
+
+  // reviews
+  fetch(DBHelper.REVIEW_URL, {}).then(function(response) {
+    console.log(response.json());
+    return response.json();
+  }).catch(error => console.error(error));
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 function fetchUniqueRestHTML (restaurant) {
   self.restaurant = restaurant;
+  console.log(self.restaurant);
   fillRestaurantHTML();
 }
+
 
 /**
  * Create restaurant HTML and add it to the webpage
@@ -156,6 +266,9 @@ const fillRestaurantHTML = (restaurant = self.restaurant) => {
   fillReviewsHTML();
 }
 
+
+
+
 /**
  * Create restaurant operating hours HTML table and add it to the webpage.
  */
@@ -175,6 +288,9 @@ const fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hour
     hours.appendChild(row);
   }
 }
+
+
+
 
 /**
  * Create all reviews HTML and add them to the webpage.
@@ -197,6 +313,9 @@ const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   });
   container.appendChild(ul);
 }
+
+
+
 
 /**
  * Create review HTML and add it to the webpage.
@@ -229,6 +348,9 @@ const createReviewHTML = (review) => {
   return li;
 }
 
+
+
+
 /**
  * Add restaurant name to the breadcrumb navigation menu
  */
@@ -238,6 +360,9 @@ const fillBreadcrumb = (restaurant=self.restaurant) => {
   li.innerHTML = restaurant.name;
   breadcrumb.appendChild(li);
 }
+
+
+
 
 /**
  * Get a parameter by name from page URL.
@@ -254,6 +379,9 @@ let getParameterByName = (name, url) => {
     return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+
+
+
 
 /**
  * jQuery for Google API

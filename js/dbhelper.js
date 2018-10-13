@@ -43,9 +43,12 @@ class DBHelper {
     
   }
 
+
+
   /**
    * Map marker for a restaurant.
    */
+  
   static mapMarkerForRestaurant(restaurant, map) {
     const marker = new google.maps.Marker({
       position: restaurant.latlng,
@@ -56,5 +59,18 @@ class DBHelper {
     );
     return marker;
   }
+
+
+
+
+  /**
+   * Restaurant reviews pull
+   */
+
+  static get REVIEW_URL() {
+    const port = 1337 // Change this to your server port
+    return `http://localhost:${port}/reviews`;
+  }
+
 
 }
