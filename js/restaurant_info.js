@@ -7,6 +7,10 @@ function fetchRestaurantsAll (data) {
   return data;
 }
 
+function fetchReviewsAll (data) {
+  return data;
+}
+
 function fetchUniqueRestaurant (data) {
   const restaurants = data;
   let results = restaurants;
@@ -208,11 +212,12 @@ if (navigator.serviceWorker) {
   // fetch events for browsers that do not have service workers
   
   // restaurants
-  fetch(DBHelper.DATABASE_URL, {}).then(function(response) {
+  fetch(DBHelper.REVIEW_URL, {}).then(function(response) {
     return response.json();
-  }).then(fetchRestaurantsAll)
-  .then(fetchUniqueRestaurant)
-  .then(fetchUniqueRestHTML)
+  }).then(fetchReviewsAll)
+  .then(fetchReviews)
+  .then(returnResults)
+  .then(fillReviewsHTML)
   .catch(error => console.error(error));
 
   // reviews

@@ -20,7 +20,10 @@ console.log('this is the service worker');
 // cache with WorkBox: non-image assets
     workbox.routing.registerRoute(
       new RegExp('.*\.*'),
-      workbox.strategies.networkFirst()
+      workbox.strategies.staleWhileRevalidate({
+        // custom cache name
+        cacheName: 'mwsCache'
+      })
     );
 
 
