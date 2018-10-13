@@ -26,7 +26,6 @@ function fetchReviews (data) {
   console.log('id from URL: ' + id);
   if (id) {
     results = results.filter(r => r.restaurant_id == id);
-    console.log(results);
     return results;
   }
 }
@@ -196,6 +195,8 @@ if (navigator.serviceWorker) {
       var store = tx.objectStore('mwsReviewData');
       return store.getAll();
     }).then(fetchReviews)
+    .then(returnResults)
+    .then(fillReviewsHTML)
     .catch(error => console.error(error));
   }
   
@@ -262,8 +263,8 @@ const fillRestaurantHTML = (restaurant = self.restaurant) => {
   if (restaurant.operating_hours) {
     fillRestaurantHoursHTML();
   }
-  // fill reviews
-  fillReviewsHTML();
+  // fill reviews - deprecate in phase III
+  // fillReviewsHTML();
 }
 
 
@@ -294,22 +295,30 @@ const fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hour
 
 /**
  * Create all reviews HTML and add them to the webpage.
+ * update code to (reviews = self.reviews) from (reviews = self.restaurant.reviews)
  */
-const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
+
+function returnResults (results) {
+  console.log(results);
+  return results;
+} 
+
+function fillReviewsHTML (results) {
+  console.log('fillReviewsHTML()');
   const container = document.getElementById('reviews-container');
   const title = document.createElement('h2');
   title.innerHTML = 'Reviews';
   container.appendChild(title);
 
-  if (!reviews) {
+  if (!results) {
     const noReviews = document.createElement('p');
     noReviews.innerHTML = 'No reviews yet!';
     container.appendChild(noReviews);
     return;
   }
   const ul = document.getElementById('reviews-list');
-  reviews.forEach(review => {
-    ul.appendChild(createReviewHTML(review));
+  results.forEach(result => {
+    ul.appendChild(createReviewHTML(result));
   });
   container.appendChild(ul);
 }
@@ -321,27 +330,34 @@ const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  * Create review HTML and add it to the webpage.
  * Edit: assign classes to each <p> element for styling.
  */
-const createReviewHTML = (review) => {
+const createReviewHTML = (result) => {
   const li = document.createElement('li');
   li.setAttribute("class", "reviewListing");
 
   const name = document.createElement('p');
-  name.innerHTML = review.name;
+  name.innerHTML = result.name;
   name.setAttribute("class", "reviewName");
   li.appendChild(name);
 
-  const date = document.createElement('p');
-  date.innerHTML = review.date;
-  date.setAttribute("class", "reviewDate");
-  li.appendChild(date);
+  //instead of date, present createdAt and updatedAt
+  const createdAt = document.createElement('p');
+  createdAt.innerHTML = result.createdAt;
+  createdAt.setAttribute("class", "reviewDate");
+  li.appendChild(createdAt);
+
+  //instead of date, present createdAt and updatedAt
+  const updatedAt = document.createElement('p');
+  updatedAt.innerHTML = result.updatedAt;
+  updatedAt.setAttribute("class", "reviewDate");
+  li.appendChild(updatedAt);
 
   const rating = document.createElement('p');
-  rating.innerHTML = `Rating: ${review.rating}`;
+  rating.innerHTML = `Rating: ${result.rating}`;
   rating.setAttribute("class", "reviewRating");
   li.appendChild(rating);
 
   const comments = document.createElement('p');
-  comments.innerHTML = review.comments;
+  comments.innerHTML = result.comments;
   comments.setAttribute("class", "reviewComments");
   li.appendChild(comments);
 
