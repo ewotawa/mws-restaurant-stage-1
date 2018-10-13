@@ -339,17 +339,28 @@ const createReviewHTML = (result) => {
   name.setAttribute("class", "reviewName");
   li.appendChild(name);
 
-  //instead of date, present createdAt and updatedAt
-  const createdAt = document.createElement('p');
-  createdAt.innerHTML = result.createdAt;
-  createdAt.setAttribute("class", "reviewDate");
-  li.appendChild(createdAt);
-
-  //instead of date, present createdAt and updatedAt
-  const updatedAt = document.createElement('p');
-  updatedAt.innerHTML = result.updatedAt;
-  updatedAt.setAttribute("class", "reviewDate");
-  li.appendChild(updatedAt);
+  // if review has been updated, show update 
+  if (result.UpdatedAt > result.createdAt) {
+    //instead of date, present createdAt and updatedAt
+    const updatedAt = document.createElement('p');
+    let uDate = new Date(result.updatedAt);
+    let uDateMonth = uDate.getMonth();
+    let uDateDate = uDate.getDate();
+    let uDateYear = uDate.getFullYear();
+    updatedAt.innerHTML = `Updated: ${uDateMonth}/${uDateDate}/${uDateYear}`;
+    updatedAt.setAttribute("class", "reviewDate");
+    li.appendChild(updatedAt);    
+  } else {
+    //instead of date, present createdAt and updatedAt
+    const createdAt = document.createElement('p');
+    let cDate = new Date(result.createdAt);
+    let cDateMonth = cDate.getMonth();
+    let cDateDate = cDate.getDate();
+    let cDateYear = cDate.getFullYear();
+    createdAt.innerHTML = `Created: ${cDateMonth}/${cDateDate}/${cDateYear}`;
+    createdAt.setAttribute("class", "reviewDate");
+    li.appendChild(createdAt);    
+  }
 
   const rating = document.createElement('p');
   rating.innerHTML = `Rating: ${result.rating}`;
