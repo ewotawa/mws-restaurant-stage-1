@@ -326,10 +326,119 @@ function fillReviewsHTML (results) {
     ul.appendChild(createReviewHTML(result));
   });
   container.appendChild(ul);
+
+  newReviewHTML();
 }
 
+function newReviewHTML () {
+  console.log('newReviewHTML');
+  const container = document.getElementById('new-review-container');
+  const title = document.createElement('h2');
+  title.innerHTML = 'Write a Review';
+  container.appendChild(title);
 
+  // add a form element inside the container
+  const form = document.createElement('form');
+  form.setAttribute("id", "form");
+  container.appendChild(form);
 
+  // add a fieldset to the form
+  const fieldset = document.createElement('fieldset');
+  form.appendChild(fieldset);
+
+  // add a legend for assistive technologies
+  const legend = document.createElement('legend');
+  legend.innerHTML = `Write a new review for this restaurant.`;
+  fieldset.appendChild(legend);
+
+  // Add an input item for the form: NAME
+  const pName = document.createElement('div');
+  fieldset.appendChild(pName);
+
+  const labelName = document.createElement('label');
+  labelName.setAttribute("for", "formName");
+  labelName.innerHTML = 'Name';
+  pName.appendChild(labelName);
+
+  const brName = document.createElement('br');
+  pName.appendChild(brName);
+  
+  const inputName = document.createElement('input');
+  inputName.setAttribute("type", "text");
+  inputName.setAttribute("name", "name");
+  inputName.setAttribute("id", "formName");
+  pName.appendChild(inputName);
+
+  // Add an option list for restaurant rating
+  const rName = document.createElement('div');
+  fieldset.appendChild(rName);
+
+  const labelRating = document.createElement('label');
+  labelRating.setAttribute("for", "formRating");
+  labelRating.setAttribute("required", "");
+  labelRating.innerHTML = 'Rating';
+  rName.appendChild(labelRating);
+
+  const brRating = document.createElement('br');
+  rName.appendChild(brRating);
+  
+  const selectRating = document.createElement('select');
+  selectRating.setAttribute("name", "rating");
+  selectRating.setAttribute("id", "formRating");
+  selectRating.setAttribute("required", "");
+  rName.appendChild(selectRating);
+
+  const optionOne = document.createElement('option');
+  optionOne.setAttribute("value", "1");
+  optionOne.innerHTML = '1';
+  selectRating.appendChild(optionOne);
+
+  const optionTwo = document.createElement('option');
+  optionTwo.setAttribute("value", "2");
+  optionTwo.innerHTML = '2';
+  selectRating.appendChild(optionTwo);
+
+  const optionThree = document.createElement('option');
+  optionThree.setAttribute("value", "3");
+  optionThree.innerHTML = '3';
+  selectRating.appendChild(optionThree);
+
+  const optionFour = document.createElement('option');
+  optionFour.setAttribute("value", "4");
+  optionFour.innerHTML = '4';
+  selectRating.appendChild(optionFour);
+
+  const optionFive = document.createElement('option');
+  optionFive.setAttribute("value", "5");
+  optionFive.innerHTML = '5';
+  selectRating.appendChild(optionFive);
+
+  const cName = document.createElement('div');
+  fieldset.appendChild(cName);
+
+  const labelReview = document.createElement('label');
+  labelReview.setAttribute("for", "formReview");
+  labelReview.innerHTML = 'Review';
+  cName.appendChild(labelReview);
+
+  const brReview = document.createElement('br');
+  cName.appendChild(brReview);  
+
+  const textareaReview = document.createElement('textarea');
+  textareaReview.setAttribute("cols", "30");
+  textareaReview.setAttribute("rows", "10");
+  textareaReview.setAttribute("name", "review");
+  textareaReview.setAttribute("id", "formReview");
+  textareaReview.setAttribute("required", "");
+  cName.appendChild(textareaReview);
+
+  const submit = document.createElement('input');
+  submit.setAttribute("type", "submit");
+  submit.setAttribute("value", "Post Review");
+  submit.setAttribute("role", "button");
+  submit.setAttribute('class', 'submit');
+  fieldset.appendChild(submit);
+  }
 
 /**
  * Create review HTML and add it to the webpage.
