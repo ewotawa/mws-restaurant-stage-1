@@ -367,6 +367,7 @@ function newReviewHTML () {
   inputName.setAttribute("type", "text");
   inputName.setAttribute("name", "name");
   inputName.setAttribute("id", "formName");
+  inputName.setAttribute("required", "");
   pName.appendChild(inputName);
 
   // Add an option list for restaurant rating
