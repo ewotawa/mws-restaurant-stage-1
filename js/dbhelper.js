@@ -72,5 +72,38 @@ class DBHelper {
     return `http://localhost:${port}/reviews`;
   }
 
+  /**
+   * POST restaurant review
+   */
+
+  /*
+  static postReview(review) {
+    // parse the review from the data submitted on the form
+
+    var reviewBody = {
+      "restaurant_id": review.restaurant_id,
+      "name": review.name,
+      "rating": review.rating,
+      "comments": review.comments
+    };
+  
+    console.log(`Submitting fetch POST request:`);
+    console.log(reviewBody);
+
+    // fetch post event
+
+    fetch('http://localhost:1337/reviews', {
+      method: 'POST',
+      body: JSON.stringify(reviewBody),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+      .then(response => console.log('Success: ', JSON.stringify(response)))
+      .catch(error => console.log('Error: ', error));
+
+  }
+  */  
+
 
 }

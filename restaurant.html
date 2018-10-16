@@ -55,7 +55,42 @@
     <section id="reviews-container">
       <ul id="reviews-list"></ul>
     </section>
-    <section id="new-review-container"></section>
+    <section id="new-review-container">
+      <h2>Write a Review</h2>
+      <form id="form">
+        <fieldset>
+          <legend>Write a new review for this restaurant.</legend>
+          <div>
+            <input type="text" name="ID" id="formID" required>
+          </div>
+          <div>
+            <label for="formName">Name</label>
+            <br>
+            <input type="text" name="name" id="formName" required>
+          </div>
+          <div>
+            <label for="formRating" required="">Rating</label>
+            <br>
+            <select name="rating" id="formRating" required>
+              <option value=""></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div>
+            <label for="formReview">Review</label>
+            <br>
+            <textarea rows="10" name="review" id="formReview" required></textarea>
+          </div>
+        </fieldset>
+      </form>
+      <br>
+      <button id="submitReview" role="button" onclick="newReview()">Submit Review</button>
+      <br>
+    </section>
     <!-- End reviews -->
   </main>
   <!-- End main -->

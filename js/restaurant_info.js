@@ -3,6 +3,8 @@ var map;
 
 var key = config.googleMapApi;
 
+var post = 'http://localhost:1337/reviews/';
+
 function fetchRestaurantsAll (data) {
   return data;
 }
@@ -195,7 +197,7 @@ if (navigator.serviceWorker) {
   // PULL DATA OUT OF DATABASE: get all Restaurants
   function getRestaurant () {
     dbPromise.then(function(db) {
-      var tx = db.transaction('mwsReviewData', 'readonly');
+      var tx = db.transaction('mwsReviewData', 'readwrite');
       var store = tx.objectStore('mwsReviewData');
       return store.getAll();
     }).then(fetchReviews)
@@ -327,121 +329,96 @@ function fillReviewsHTML (results) {
   });
   container.appendChild(ul);
 
-  newReviewHTML();
+  // set form value attribute to match restaurant ID.
+  document.getElementById('formID').setAttribute('value', getParameterByName('id'));
+ 
 }
 
-function newReviewHTML () {
-  console.log('newReviewHTML');
-  const container = document.getElementById('new-review-container');
-  const title = document.createElement('h2');
-  title.innerHTML = 'Write a Review';
-  container.appendChild(title);
+// submit element
 
-  // add a form element inside the container
-  const form = document.createElement('form');
-  form.setAttribute("id", "form");
-  container.appendChild(form);
+function newReview() {
 
-  // add a fieldset to the form
-  const fieldset = document.createElement('fieldset');
-  form.appendChild(fieldset);
+  console.log("new review function");
 
-  // add a legend for assistive technologies
-  const legend = document.createElement('legend');
-  legend.innerHTML = `Write a new review for this restaurant.`;
-  fieldset.appendChild(legend);
+    // define form data for new restaurant review
 
-  // Add an input item for the form: NAME
-  const pName = document.createElement('div');
-  fieldset.appendChild(pName);
+  let restaurant_id = parseInt(document.getElementById('formID').value);
+  let name = document.getElementById('formName').value;
+  let rating = parseInt(document.getElementById('formRating').value);
+  let comments = document.getElementById('formReview').value;
+  let createdAt = Date.now();
+  let updatedAt = createdAt;
 
-  const labelName = document.createElement('label');
-  labelName.setAttribute("for", "formName");
-  labelName.innerHTML = 'Name';
-  pName.appendChild(labelName);
+  // create an array to house what needs to be posted to the database
+  // review is the input to the postReview() function in DBHelper
 
-  const brName = document.createElement('br');
-  pName.appendChild(brName);
+  let review = {
+    // "id",
+    "restaurant_id": restaurant_id,
+    "name": name,
+    "createdAt": createdAt,
+    "updatedAt": updatedAt,
+    "rating": rating,
+    "comments": comments
+  };
+
+  // create a list to house what needs to be pushed to the front end.
   
-  const inputName = document.createElement('input');
-  inputName.setAttribute("type", "text");
-  inputName.setAttribute("name", "name");
-  inputName.setAttribute("id", "formName");
-  inputName.setAttribute("required", "");
-  pName.appendChild(inputName);
+  let result = {
+    "restaurant_id": restaurant_id,
+    "name": name,
+    "rating": rating,
+    "comments": comments
+  };
 
-  // Add an option list for restaurant rating
-  const rName = document.createElement('div');
-  fieldset.appendChild(rName);
+  console.log(review);
 
-  const labelRating = document.createElement('label');
-  labelRating.setAttribute("for", "formRating");
-  labelRating.setAttribute("required", "");
-  labelRating.innerHTML = 'Rating';
-  rName.appendChild(labelRating);
+  console.log(result);
 
-  const brRating = document.createElement('br');
-  rName.appendChild(brRating);
+  // post new review to the database
+  postReview(review);
+
+  // render new review in the DOM
+  const ul = document.getElementById('reviews-list');
+  ul.appendChild(createReviewHTML(result));
   
-  const selectRating = document.createElement('select');
-  selectRating.setAttribute("name", "rating");
-  selectRating.setAttribute("id", "formRating");
-  selectRating.setAttribute("required", "");
-  rName.appendChild(selectRating);
 
-  const optionOne = document.createElement('option');
-  optionOne.setAttribute("value", "1");
-  optionOne.innerHTML = '1';
-  selectRating.appendChild(optionOne);
+  // reset the form
+  document.getElementById('form').reset();
 
-  const optionTwo = document.createElement('option');
-  optionTwo.setAttribute("value", "2");
-  optionTwo.innerHTML = '2';
-  selectRating.appendChild(optionTwo);
+}
 
-  const optionThree = document.createElement('option');
-  optionThree.setAttribute("value", "3");
-  optionThree.innerHTML = '3';
-  selectRating.appendChild(optionThree);
 
-  const optionFour = document.createElement('option');
-  optionFour.setAttribute("value", "4");
-  optionFour.innerHTML = '4';
-  selectRating.appendChild(optionFour);
 
-  const optionFive = document.createElement('option');
-  optionFive.setAttribute("value", "5");
-  optionFive.innerHTML = '5';
-  selectRating.appendChild(optionFive);
+function postReview(review) {
+  // parse the review from the data submitted on the form
 
-  const cName = document.createElement('div');
-  fieldset.appendChild(cName);
+  var reviewBody = {
+    "restaurant_id": review.restaurant_id,
+    "name": review.name,
+    "rating": review.rating,
+    "comments": review.comments
+  };
 
-  const labelReview = document.createElement('label');
-  labelReview.setAttribute("for", "formReview");
-  labelReview.innerHTML = 'Review';
-  cName.appendChild(labelReview);
+  console.log(`Submitting fetch POST request:`);
+  console.log(reviewBody);
 
-  const brReview = document.createElement('br');
-  cName.appendChild(brReview);  
+  // fetch post event
 
-  const textareaReview = document.createElement('textarea');
-  textareaReview.setAttribute("cols", "30");
-  textareaReview.setAttribute("rows", "10");
-  textareaReview.setAttribute("name", "review");
-  textareaReview.setAttribute("id", "formReview");
-  textareaReview.setAttribute("required", "");
-  cName.appendChild(textareaReview);
+  fetch('http://localhost:1337/reviews', {
+    method: 'POST',
+    body: JSON.stringify(reviewBody),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
+    .then(response => console.log('Success: ', JSON.stringify(response)))
+    .catch(error => console.log('Error: ', error));
 
-  const submit = document.createElement('input');
-  submit.setAttribute("type", "submit");
-  submit.setAttribute("value", "Post Review");
-  submit.setAttribute("role", "button");
-  submit.setAttribute('class', 'submit');
-  fieldset.appendChild(submit);
-  }
+}
 
-/**
+
+  /**
  * Create review HTML and add it to the webpage.
  * Edit: assign classes to each <p> element for styling.
  */

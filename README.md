@@ -188,6 +188,26 @@ https://developers.google.com/web/tools/lighthouse/audits/address-bar
 * https://developers.google.com/web/tools/workbox/reference-docs/latest/workbox.routing
 * https://developers.google.com/web/tools/workbox/reference-docs/latest/workbox.routing.Router#registerRoute
 
+## Format date values
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Numbers_and_dates
+* https://stackoverflow.com/questions/40751111/getmonth-is-not-a-function-error-parsing-date
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate
+* https://www.w3schools.com/js/js_date_formats.asp
+
+## IndexedDB reference
+* https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB
+* https://developer.mozilla.org/en-US/docs/Web/API/IDBKeyRange
+* https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/getAll
+
+## HTML forms
+* https://www.w3schools.com/cssref/pr_font_weight.asp
+* https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/How_to_structure_an_HTML_form
+* https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/The_native_form_widgets
+* https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data
+* https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation
+* https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_forms_through_JavaScript
+* https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms
+* https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation
 
 
 
