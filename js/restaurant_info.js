@@ -373,10 +373,8 @@ function newReview() {
 
   console.log(review);
 
-  console.log(result);
-
   // post new review to the database
-  postReview(review);
+  postReview(result);
 
   // render new review in the DOM
   const ul = document.getElementById('reviews-list');
@@ -393,30 +391,44 @@ function newReview() {
 function postReview(review) {
   // parse the review from the data submitted on the form
 
-  var reviewBody = {
-    "restaurant_id": review.restaurant_id,
-    "name": review.name,
-    "rating": review.rating,
-    "comments": review.comments
-  };
-
   console.log(`Submitting fetch POST request:`);
-  console.log(reviewBody);
+  console.log(review);
+
+  let reviewString = JSON.stringify(review);
+  console.log(reviewString);
 
   // fetch post event
 
-  /*
   fetch('http://localhost:1337/reviews', {
     method: 'POST',
-    body: JSON.stringify(reviewBody),
-    headers: {
-      'Content-Type': 'application/json'
+    body: reviewString,
+    headers: new Headers({'Content-Type': 'application/json'})
+  }).then(function(response) {
+    // interpret what's coming back from the server 
+    var method = response.method;
+    var body = response.body;
+    var contentType = response.headers.get('content-type');
+    var indexOfContentType = contentType.indexOf('application/json');
+    // log the response to the console
+    console.log(`Method: ${method}`);
+    console.log(`Body: ${body}`);
+    console.log(`Content-Type: ${contentType}`);
+    console.log(`Index of Content-Type: ${indexOfContentType}`);
+    // do something with the response
+    if (contentType && indexOfContentType !== -1) {
+      return response.json();
+    } else {
+      return `API call not successful`;
     }
-  }).then(res => res.json())
-    .then(response => console.log('Success: ', JSON.stringify(response)))
-    .catch(error => console.log('Error: ', error));
-  */
-  
+  }).then(function(data) {
+    // report a successful fetch
+    console.log(`fetch successful`);
+    console.log(data);
+  }).catch(function(error) {
+    // report an error
+    console.log(`Error: ${error}`);
+  });
+
 }
 
 

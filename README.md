@@ -208,7 +208,28 @@ https://developers.google.com/web/tools/lighthouse/audits/address-bar
 * https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_forms_through_JavaScript
 * https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms
 * https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation
+* https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset
+* https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+* https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data
 
+## fetch POST
+* https://www.youtube.com/watch?v=XbCwxeCqxw4
+* https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
+* https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api
+* https://davidwalsh.name/fetch
+* https://stackoverflow.com/questions/29775797/fetch-post-json-data
+* https://googlechrome.github.io/samples/fetch-api/fetch-post.html
+
+## render form in UI
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now
+
+## database server readme
+* https://github.com/ewotawa/mws-restaurant-stage-3/blob/master/README.md
+
+## Udacity MWS Nanodegree Stage 3 Rubric
+* https://review.udacity.com/#!/rubrics/1132/view
 
 
 

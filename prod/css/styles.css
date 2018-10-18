@@ -58,6 +58,7 @@ select:hover, select:focus {
   padding: 25px;
   text-align: center;
   text-transform: uppercase;
+  margin-top: 100px;
 }
 
 #footer strong {
@@ -445,7 +446,7 @@ nav h1 a {
     width: 100%;
   }
 
-  #restaurant-container, #reviews-container #new-review-container {
+  #restaurant-container, #reviews-container, #new-review-container {
     width: 90%;
     max-width: 450px;
     padding: 0;
@@ -501,7 +502,7 @@ input {
 }
 
 textarea {
-  width: auto;
+  width: 85%;
   height: 105px;
 }
 
@@ -534,8 +535,17 @@ label {
     color: #fff;
     display: inline-block;
     font-size: 10pt;
-    margin: 15px 0 30px;
+    margin: 15px 0 150px;
     padding: 15px 30px;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
+}
+
+.submit:hover, .submit:focus, #submitReview:hover, #submitReview:focus {
+  /* change color for accessibility */
+  color: #007dbb;
+  text-decoration: none;
+  /* add focus */
+  box-shadow: 0 0 8px 3px;
+}
