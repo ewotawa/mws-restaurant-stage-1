@@ -405,6 +405,7 @@ function postReview(review) {
 
   // fetch post event
 
+  /*
   fetch('http://localhost:1337/reviews', {
     method: 'POST',
     body: JSON.stringify(reviewBody),
@@ -414,7 +415,8 @@ function postReview(review) {
   }).then(res => res.json())
     .then(response => console.log('Success: ', JSON.stringify(response)))
     .catch(error => console.log('Error: ', error));
-
+  */
+  
 }
 
 
