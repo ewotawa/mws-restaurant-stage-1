@@ -231,6 +231,12 @@ https://developers.google.com/web/tools/lighthouse/audits/address-bar
 ## Udacity MWS Nanodegree Stage 3 Rubric
 * https://review.udacity.com/#!/rubrics/1132/view
 
+## Follow-up edits after 10/18/2018 review
+
+### Add `node-modules` folder to the `gitignore` file
+* *Application sizes was too big try not to add `node_modules` folder.*
+* https://stackoverflow.com/questions/29820791/git-ignore-node-modules-folder-everywhere
+
 
 
 
