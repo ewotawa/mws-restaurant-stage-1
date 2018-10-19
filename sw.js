@@ -50,6 +50,27 @@ console.log('this is the service worker');
           event.waitUntil(promiseChain);
         });
 
+    // add code for POST requests
+
+        const bgSyncPlugin = new workbox.backgroundSync.Plugin('reviewQueue', {
+            maxRetentionTime: 24 * 60
+        });
+
+        // get current url to register
+
+        workbox.routing.registerRoute(
+            'http://localhost:1337/reviews/',
+            workbox.strategies.networkFirst({
+               plugins: [bgSyncPlugin] 
+            }),
+            'POST'
+        )
+
+
+
+
+
+
 
 // Console logs for service worker events
 

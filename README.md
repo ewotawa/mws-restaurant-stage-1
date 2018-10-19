@@ -61,6 +61,8 @@ https://developers.google.com/web/tools/workbox/modules/workbox-background-sync
 
 7. Refresh the page once, possibly twice. Watch for a final green-workbox-labeled line confirming the `PUT` or `POST` request completion on the server.
 
+8. Refresh the IndexedDB instance where you see the cached entry. You will see the entries disappear from the cache.
+
 
 # References, Part I
 
@@ -236,6 +238,10 @@ https://developers.google.com/web/tools/lighthouse/audits/address-bar
 ### Add `node-modules` folder to the `gitignore` file
 * *Application sizes was too big try not to add `node_modules` folder.*
 * https://stackoverflow.com/questions/29820791/git-ignore-node-modules-folder-everywhere
+
+### Extend WorkBox BackgroundSync to POST method
+* https://medium.freecodecamp.org/how-to-build-a-custom-pwa-with-workbox-in-create-react-app-be580686cf73
+
 
 
 
