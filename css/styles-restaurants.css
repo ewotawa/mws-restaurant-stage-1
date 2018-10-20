@@ -1,0 +1,141 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+body {
+	color: #333;
+}
+
+ul, li {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	color: #333;
+}
+
+a {
+  /* changed color for accessibility */
+  color: #BC5A01;
+	text-decoration: none;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+a:hover, a:focus, button:hover, button:focus, input:hover, input:focus, textarea:hover, textarea:focus {
+  /* change color for accessibility */
+  color: #007dbb;
+  text-decoration: none;
+  /* add focus */
+  box-shadow: 0 0 8px 3px;
+}
+
+a img {
+	border: none 0px #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0 0 20px;
+}
+
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+select:hover, select:focus {
+  text-decoration: none;
+  /* add focus */
+  box-shadow: 0 0 8px 3px;
+}
+
+/* ====================== Navigation ====================== */
+nav h1 {
+  margin: auto;
+}
+
+/* ====================== Map ====================== */
+
+/* ====================== Restaurant Filtering ====================== */
+.filter-options {
+  width: 100%;
+  height: em;
+}
+
+/* ====================== Restaurant Listing ====================== */
+/* media-dependent */
+#restaurants-list {
+  width: 100%;
+}
+
+#restaurants-list li {
+  width: 270px;
+  min-height: 380px;
+}
+
+#restaurants-list .restaurant-img {
+  min-height: 248px;
+}
+
+#restaurants-list li a {
+  /* changed color for accessibility */
+  color: #fff;
+  text-decoration: none;
+}
+
+#restaurants-list li a:hover, #restaurants-list li a:focus {
+  /* change color for accessibility */
+  color: #007dbb;
+  text-decoration: none;
+  /* add focus */
+  box-shadow: 0 0 8px 3px;
+}
+
+.buttonBlue {
+  /* changed color for accessibility */
+  background-color: #007dbb;
+  border-bottom: 3px solid #eee;
+  color: #fff;
+  display: inline-block;
+  font-size: 10pt;
+  margin: 15px 0 0;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;}
+
+.buttonOrange {
+  /* changed color for accessibility */
+  background-color: #BC5A01;
+  border-bottom: 3px solid #eee;
+  color: #fff;
+  display: inline-block;
+  font-size: 10pt;
+  margin: 15px 0 0;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+
+
+/* Responsive Layout */
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#hideMap {
+  height: 0px;
+}
+/* Media Queries */
+
+
+

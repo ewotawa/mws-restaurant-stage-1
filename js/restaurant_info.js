@@ -362,23 +362,14 @@ function newReview() {
     "comments": comments
   };
 
-  // create a list to house what needs to be pushed to the front end.
-  
-  let result = {
-    "restaurant_id": restaurant_id,
-    "name": name,
-    "rating": rating,
-    "comments": comments
-  };
-
   console.log(review);
 
   // post new review to the database
-  postReview(result);
+  postReview(review);
 
   // render new review in the DOM
   const ul = document.getElementById('reviews-list');
-  ul.appendChild(createReviewHTML(result));
+  ul.appendChild(createReviewHTML(review));
   
 
   // reset the form

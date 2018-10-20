@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#afafaf">
   <!-- stylesheet links -->
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles-restaurants.css">
   <link rel="stylesheet" href="css/styles-max-width-500px.css" media="(max-width: 500px)">
   <!-- font awesome CDN -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
@@ -24,23 +24,23 @@
   <title>Restaurant Reviews</title>
 </head>
 
-<body>
+<body style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt; color: #333; line-height: 1.5; background-color: #fdfdfd; margin: 0; position:relative;">
   <header>
-    <nav class="container">
-      <h1><a href="/">Restaurant Reviews</a></h1>
+    <nav class="container" style="width: 100%; height: 80px; background-color: #252831; text-align:center;">
+      <h1><a href="/" style="color: #fff; font-size: 14pt; font-weight: 200; letter-spacing: 10px; text-transform: uppercase;">Restaurant Reviews</a></h1>
       <div class="nav-right" id="hamburger"><h1><i class="fas fa-bars"></i></h1></div>
     </nav>
   </header>
 
-  <main id="maincontent">
+  <main id="maincontent" style="background-color: #f3f3f3; min-height: 100%;">
     <!-- filters -->
     <section>
-      <div class="filter-options" id="drawer">
-        <h2>Filter Results</h2>
-        <select id="neighborhoods-select" name="neighborhoods" aria-labelledby="nValue" onchange="updateRestaurants()">
+      <div class="filter-options" id="drawer" style="background-color: #007dbb; align-items: center;">
+        <h2 style="color: white; font-size: 1rem; font-weight: normal; line-height: 2; margin: 0 20px;">Filter Results</h2>
+        <select id="neighborhoods-select" name="neighborhoods" aria-labelledby="nValue" onchange="updateRestaurants()" style="background-color: white; border: 1px solid #fff; font-family: Arial,sans-serif; font-size: 11pt; height: 35px; letter-spacing: 0; margin: 10px; padding: 0 10px; width: 200px;">
           <option id="nValue" value="all">All Neighborhoods</option>
         </select>
-        <select id="cuisines-select" name="cuisines" aria-labelledby="cValue" onchange="updateRestaurants()">
+        <select id="cuisines-select" name="cuisines" aria-labelledby="cValue" onchange="updateRestaurants()" style="background-color: white; border: 1px solid #fff; font-family: Arial,sans-serif; font-size: 11pt; height: 35px; letter-spacing: 0; margin: 10px; padding: 0 10px; width: 200px;">
           <option id="cValue" value="all">All Cuisines</option>
         </select>
       </div>
@@ -50,9 +50,9 @@
     <section id="map-container">
       <div id="statcMapOuter">
         <img id="staticMap">
-        <strong><p id="staticMapCaption">Tap on map to activate</p></strong>
+        <strong><p id="staticMapCaption" style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt; color: #333; line-height: 1.5;">Tap on map to activate</p></strong>
       </div>
-      <div id="mapOuter" style="display: none"><div id="map" role="application"></div></div>
+      <div id="mapOuter" style="display: none"><div id="map" role="application" style="height: 400px; width: 100%; background-color: #ccc;"></div></div>
     </section>
 
     <!-- restaurant cards -->
@@ -74,8 +74,8 @@
   
 
 
-  <footer id="footer">
-    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+  <footer id="footer" style="background-color: #444; color: #fff; font-size: 8pt; letter-spacing: 1px; padding: 25px; text-align: center; text-transform: uppercase; margin-top: 100px;">
+    Copyright (c) 2017 <a href="/"><strong style="color: #FFA500;">Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
 
 </body>

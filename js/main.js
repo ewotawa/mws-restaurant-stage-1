@@ -205,7 +205,7 @@ var red10 = '40.743394,-73.954235';
 var width = window.screen.width;
 var height = '400'; 
 //console.log(config.googleMapApi);
-staticMap = `https://maps.googleapis.com/maps/api/staticmap?center=${center}&zoom=${zoom}&size=${width}x${height}&maptype=roadmap&markers=color:red%7Clabel:1%7C${red01}&markers=color:red%7Clabel:2%7C${red02}&markers=color:red%7Clabel:3%7C${red03}&markers=color:red%7Clabel:4%7C${red04}&markers=color:red%7Clabel:5%7C${red05}&markers=color:red%7Clabel:6%7C${red06}&markers=color:red%7Clabel:7%7C${red07}&markers=color:red%7Clabel:8%7C${red08}&markers=color:red%7Clabel:9%7C${red09}&markers=color:red%7Clabel:10%7C${red10}&key=${config.googleMapApi}`;
+staticMap = `https://maps.googleapis.com/maps/api/staticmap?center=${center}&zoom=${zoom}&size=${width}x${height}&maptype=roadmap&markers=color:red%7C${red01}&markers=color:red%7C${red02}&markers=color:red%7C${red03}&markers=color:red%7C${red04}&markers=color:red%7C${red05}&markers=color:red%7C${red06}&markers=color:red%7C${red07}&markers=color:red%7C${red08}&markers=color:red%7C${red09}&markers=color:red%7C${red10}&key=${config.googleMapApi}`;
 sMap.setAttribute('src', staticMap);
 
 activeMap();
@@ -354,6 +354,7 @@ const resetRestaurants = (restaurants) => {
   // Remove all restaurants
   self.restaurants = [];
   const ul = document.getElementById('restaurants-list');
+  ul.setAttribute('style', 'background-color: #f3f3f3; list-style: outside none none; margin: 0; padding: 30px 15px 60px; text-align: center; display: flex; flex-wrap: wrap;');
   ul.innerHTML = '';
 
   // Remove all map markers
@@ -378,8 +379,11 @@ const fillRestaurantsHTML = (restaurants = self.restaurants) => {
  */
 const createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
+  li.setAttribute('style', 'background-color: #fff; border: 2px solid #ccc; font-family: Arial,sans-serif; margin-top: 15px; margin-left: auto; margin-right: auto; padding: 0 30px 25px; text-align: left;');
+
   const image = document.createElement('img');
   image.setAttribute('alt', 'promotional photo for ' + restaurant.name);
+  image.setAttribute('style', 'background-color: #ccc; display: block; margin: 0; max-width: 100%; min-width: 100%;');
 
   // lazy load images
   // create an intersection observer
@@ -431,10 +435,12 @@ const createRestaurantHTML = (restaurant) => {
   li.append(name);
 
   const neighborhood = document.createElement('p');
+  neighborhood.setAttribute('style', 'margin: 0; font-size: 11pt; font-family: Arial, Helvetica, sans-serif; font-size: 10pt; color: #333; line-height: 1.5;');
   neighborhood.innerHTML = restaurant.neighborhood;
   li.append(neighborhood);
 
   const address = document.createElement('p');
+  address.setAttribute('style', 'margin: 0; font-size: 11pt; font-family: Arial, Helvetica, sans-serif; font-size: 10pt; color: #333; line-height: 1.5;');
   address.innerHTML = restaurant.address;
   li.append(address);
 
@@ -443,7 +449,11 @@ const createRestaurantHTML = (restaurant) => {
   more.href = DBHelper.urlForRestaurant(restaurant);
   more.setAttribute('name', 'View details for ' + restaurant.name);
   more.setAttribute('role', 'button');
+  more.setAttribute('style', 'background-color: #BC5A01; border-bottom: 3px solid #eee; display: inline-block; font-size: 10pt; margin: 15px 0 0; padding: 15px 30px; text-align: center; text-transform: uppercase;');
   li.append(more);
+
+  const breakMore = document.createElement('br');
+  li.append(breakMore);
 
   let likeId = '#like' + restaurant.id;
 
