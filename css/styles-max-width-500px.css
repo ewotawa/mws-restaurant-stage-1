@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Small Screens */
+/* @media screen and (max-width: 500px) */
+
+#restaurants-list {
+  width: 90%;
+}
+
+#restaurants-list li {
+  width: auto;
+  min-height: auto;
+}
+
+#restaurants-list .restaurant-img {
+  min-height: auto;
+}
+
+nav h1 {
+  width: 80%;
+  text-align: left;
+  display: flex;
+}
+
+.nav-right {
+  width: 10%;
+  text-align: right;
+  color: white;
+  display: flex;
+}
+
+ /* convert to element from class */
+
+.filter-options {
+  width: 300px; /* Off Canvas update */
+  height: 175px;  /* Off Canvas add */
+  position: absolute; /* Off Canvas add */
+  -webkit-transform: translate(-600px, 0);
+  transform: translate(-600px, 0); /* Off Canvas add */
+  transition: transform 0.3s ease; /* Off Canvas add */
+  /* deprecate margin info */
+  z-index: 1;
+}
+
+/* add open class that resets the transform */
+
+.filter-options.open {
+  -webkit-transform: translate(0, 0);
+  transform: translate (0, 0);
+}

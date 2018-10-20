@@ -242,6 +242,9 @@ https://developers.google.com/web/tools/lighthouse/audits/address-bar
 ### Extend WorkBox BackgroundSync to POST method
 * https://medium.freecodecamp.org/how-to-build-a-custom-pwa-with-workbox-in-create-react-app-be580686cf73
 
+### CSS: Eliminate render-blocking resources
+* https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
+
 
 
 
