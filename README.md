@@ -3,22 +3,28 @@
 # Run the production version of the site
 To see the latest version of the MWS Restaurant App, please `cd` into the `mws-restaurant-stage-1` directory. Perform the following steps in the following order:
 
-1. Reset npm packages on local system and synchronize with those in `package.json`:
+1. Install graphicsmagick on your machine (optional). `gulp prod` in a later step will return an error on the `prod_img` step without graphicsmagick. This error will not prevent the production version of the code from running.
+
+		sudo apt-get install graphicsmagick
+
+2. Reset npm packages on local system and synchronize with those in `package.json`:
         
         rm -rf node_modules
         npm install
 
-2. Create a `config.js` file containing your Google Maps API key. See GOOGLE API KEY section below.
+3. Create a `config.js` file containing your Google Maps API key. See GOOGLE API KEY section below.
 
-3. Run the following gulp command to move your Google Maps API key into the production folder:
+4. Run the following gulp command to move your Google Maps API key into the production folder:
 		
         gulp prod
 
-4. `cd` into the `prod` directory.
+5. `cd` into the `prod` directory.
 
 		.../mws-restaurant-stage-1/prod
 
-5. Run one of the following two Python commands to launch the page in your default browser (assuming Chrome for udacity) on port 8000:
+6. Launch the sails server from the `mws-restaurant-stage-3` git repository for this course. 
+
+7. Run one of the following two Python commands to launch the page in your default browser (assuming Chrome for udacity) on port 8000:
 
 		python -m SimpleHTTPServer 8000
 
